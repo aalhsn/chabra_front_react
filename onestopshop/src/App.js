@@ -1,10 +1,14 @@
+
 import React from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
 // Components
 // import Sidebar from "./Sidebar";
+import LoginForm from "./components/LoginForm";
+import RegistrationForm from "./components/RegistrationForm";
 import Loading from "../src/Components/Loading";
 import ProductsList from "../src/Components/ProductsList";
+
 import { connect } from "react-redux";
 
 function App({ loading }) {
@@ -14,9 +18,11 @@ function App({ loading }) {
     } else {
       return (
         <Switch>
-          <Redirect exact from="/" to="/products" />
-          
+                    
           <Route path="/products/" component={ProductsList} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/signup" component={RegistrationForm} />
+        <Redirect exact from="/" to="/products" />
    
         </Switch>
       );
