@@ -20,3 +20,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+.spinner {
+  height: 100vh;
+  line-height: 100vh;
+}
+
+.loading {
+  margin-top: 50% !important;
+}

@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
-function App() {
+// Components
+// import Sidebar from "./Sidebar";
+import Loading from "../src/Components/Loading";
+import ProductsList from "../src/Components/ProductsList";
+import { connect } from "react-redux";
+
+function App({ loading }) {
+  const getView = () => {
+    if (loading) {
+      return <div className="loading"><Loading /></div>
+    } else {
+      return (
+        <Switch>
+          <Redirect exact from="/" to="/products" />
+          
+          <Route path="/products/" component={ProductsList} />
+   
+        </Switch>
+      );
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app" className="container-fluid">
+      <div className="row">
+        <div className="col-2">
+          {/* <Sidebar /> */}
+        </div>
+        <div className="content col-10">{getView()}</div>
+      </div>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    loading: state.rootProducts.loading 
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(App));

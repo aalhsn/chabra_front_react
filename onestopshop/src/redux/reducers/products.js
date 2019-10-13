@@ -8,10 +8,10 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS:
-      const authors = action.payload;
+      const products = action.payload;
       return {
         ...state,
-        products,
+        products:products,
         loading: false
       };
     default:
