@@ -20,7 +20,7 @@ class ProductCard extends Component {
             <h5 className="card-title">
               <span>{product.name}</span>
             </h5>
-            <small className="card-text">Imported from {product.origin}</small>
+            <small className="card-text">Imported just for you</small>
             <br></br>
             <small className="card-text">Added to store {date}</small>
           </div>
