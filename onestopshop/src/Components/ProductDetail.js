@@ -20,7 +20,7 @@ class ProductDetail extends Component {
     } else {
       const product = this.props.product;
       return (
-        <div className="col-lg-4 col-md-6 col-12">
+        <div className="col-lg-4 col-md-6 col-12 mt-5">
           <div className="image">
             <img
               className="card-img-top img-fluid border"
