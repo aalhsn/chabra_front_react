@@ -20,7 +20,7 @@ class ProductDetail extends Component {
     } else {
       const product = this.props.product;
       return (
-        <div className="col-lg-4 col-md-6 col-12">
+        <div className="col-lg-4 col-md-6 col-12 mt-5">
           <div className="image">
             <img
               className="card-img-top img-fluid border"
@@ -36,9 +36,9 @@ class ProductDetail extends Component {
               {product.description}{" "}
               <span className="float-right">{product.price}KWD</span>
             </p>
-            <small className="card-text">Imported from {product.origin}</small>
+            <small className="card-text">From farm to table!</small>
             <br />
-            {product.availibility && (
+            {product.active && (
               <button
                 className="float-right"
                 onClick={() => this.handleClick()}
@@ -46,7 +46,7 @@ class ProductDetail extends Component {
                 ORDER NOW
               </button>
             )}
-            {!product.availibility && (
+            {!product.active && (
               <p className="bg-warning">
                 This product is currently out of stock.
               </p>
