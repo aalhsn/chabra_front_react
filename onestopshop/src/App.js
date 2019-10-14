@@ -1,29 +1,32 @@
-
 import React from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
 // Components
 // import Sidebar from "./Sidebar";
-import LoginForm from "./components/LoginForm";
-import RegistrationForm from "./components/RegistrationForm";
+import LoginForm from "./Components/LoginForm";
+import RegistrationForm from "./Components/RegistrationForm";
 import Loading from "../src/Components/Loading";
 import ProductsList from "../src/Components/ProductsList";
+import ProductDetail from "../src/Components/ProductDetail";
 
 import { connect } from "react-redux";
 
 function App({ loading }) {
   const getView = () => {
     if (loading) {
-      return <div className="loading"><Loading /></div>
+      return (
+        <div className="loading">
+          <Loading />
+        </div>
+      );
     } else {
       return (
         <Switch>
-                    
+          <Route exact path="/products/:productID" component={ProductDetail} />
           <Route path="/products/" component={ProductsList} />
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={RegistrationForm} />
-        <Redirect exact from="/" to="/products" />
-   
+          <Redirect exact from="/" to="/products" />
         </Switch>
       );
     }
@@ -31,9 +34,7 @@ function App({ loading }) {
   return (
     <div id="app" className="container-fluid">
       <div className="row">
-        <div className="col-2">
-          {/* <Sidebar /> */}
-        </div>
+        <div className="col-2">{/* <Sidebar /> */}</div>
         <div className="content col-10">{getView()}</div>
       </div>
     </div>
@@ -42,7 +43,7 @@ function App({ loading }) {
 
 const mapStateToProps = state => {
   return {
-    loading: state.rootProducts.loading 
+    loading: state.rootProducts.loading
   };
 };
 
