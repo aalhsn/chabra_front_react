@@ -4,6 +4,7 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 // Components
 import LoginForm from "./Components/LoginForm";
 import RegistrationForm from "./Components/RegistrationForm";
+import Profile from "./Components/Profile";
 import Loading from "../src/Components/Loading";
 import ProductsList from "../src/Components/ProductsList";
 import ProductDetail from "../src/Components/ProductDetail";
@@ -28,6 +29,7 @@ function App({ loading }) {
           <Route path="/products/" component={ProductsList} />
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={RegistrationForm} />
+          <Route path="/profile" component={Profile} />
           <Redirect exact from="/" to="/products" />
         </Switch>
       );
@@ -38,7 +40,6 @@ function App({ loading }) {
       <NavBar />
 
       <div className="row">
-
         <div className="col-2">{/* <Sidebar /> */}</div>
         <div className="content col-10">{getView()}</div>
       </div>

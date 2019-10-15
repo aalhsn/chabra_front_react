@@ -4,17 +4,17 @@ import { connect } from "react-redux";
 
 // Components
 import AuthButton from "./AuthButton";
-import icon from "./logo-web.png"
-const NavBar = (props) => {
+import ProfileButton from "./ProfileButton";
+
+import icon from "./logo-web.png";
+const NavBar = props => {
   return (
-    <nav
-      className="navbar navbar-expand-lg fixed-top nav"
-      id="mainNav"
-    >
+    <nav className="navbar navbar-expand-lg fixed-top nav" id="mainNav">
       <Link className="navbar-brand" to="/welcome">
-        <img src={icon}
-          style={{ width: "200px", height: "60px", paddingLeft: "20px" }}>
-        </img>
+        <img
+          src={icon}
+          style={{ width: "200px", height: "60px", paddingLeft: "20px" }}
+        ></img>
       </Link>
       <button
         className="navbar-toggler navbar-toggler-right"
@@ -28,14 +28,14 @@ const NavBar = (props) => {
         <span className="navbar-toggler-icon" />
       </button>
 
-
       <AuthButton />
+      <ProfileButton />
     </nav>
   );
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.authReducer.user
 });
 
 export default connect(mapStateToProps)(NavBar);
