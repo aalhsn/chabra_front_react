@@ -7,7 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
+
+//Redux
 import { fetchProducts } from "./redux/actions";
+
 import store from "./redux";
 
 store.dispatch(fetchProducts());

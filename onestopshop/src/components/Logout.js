@@ -1,59 +1,37 @@
-import * as actionCreators from "../redux/actions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+
 import { Link } from "react-router-dom";
-// Fontawesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
+import { logout } from "../redux/actions/authentication";
 
 class Logout extends Component {
-  getView = () => {
-    if (this.props.user) {
+  render() {
+    const logout = () => {
       return (
-        <button
-          id="logout"
-          className="nav-item"
-          onClick={() => this.props.logout()}
-        >
+        <button danger onClick={this.props.logout}>
           Logout
         </button>
       );
-    } else {
+    };
+
+    const login = () => {
       return (
-        <div>
-          <Link to="/signup" className="nav-link nav">
-            <button
-              id="signup"
-              className="nav-item"
-              onClick={() => this.props.signup()}
-            >
-              Signup
-            </button>
-          </Link>
-
-          <Link to="/login" className="nav-link nav">
-            <button id="login" className="nav-item">
-              Login
-            </button>
-          </Link>
-        </div>
+        <Link to="/login">
+          <button id="login" className="btn btn-primary">
+            Login
+          </button>
+        </Link>
       );
-    }
-  };
+    };
 
-  render() {
-    return <div>{this.getView()}</div>;
+    return <>{this.props.user ? logout() : login()}</>;
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    logout: () => dispatch(actionCreators.logout()),
-    signup: (userData, history) =>
-      dispatch(actionCreators.signup(userData, history)),
-    login: (userData, history) =>
-      dispatch(actionCreators.login(userData, history))
+    logout: () => dispatch(logout())
   };
 };
 
