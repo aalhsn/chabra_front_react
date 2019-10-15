@@ -2,12 +2,12 @@ import React from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
 // Components
-// import Sidebar from "./Sidebar";
 import LoginForm from "./Components/LoginForm";
 import RegistrationForm from "./Components/RegistrationForm";
 import Loading from "../src/Components/Loading";
 import ProductsList from "../src/Components/ProductsList";
 import ProductDetail from "../src/Components/ProductDetail";
+import NavBar from "./Components/Navigation/NavBar";
 
 import { connect } from "react-redux";
 
@@ -33,7 +33,10 @@ function App({ loading }) {
   };
   return (
     <div id="app" className="container-fluid">
+      <NavBar />
+
       <div className="row">
+
         <div className="col-2">{/* <Sidebar /> */}</div>
         <div className="content col-10">{getView()}</div>
       </div>
