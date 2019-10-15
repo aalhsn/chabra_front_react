@@ -32,7 +32,7 @@ export const checkForExpiredToken = () => {
 const setAuthToken = async token => {
   if (token) {
     await localStorage.setItem("token", token);
-    instance.defaults.headers.common.Authorization = `jwt ${token}`;
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   } else {
     await localStorage.removeItem("token");
     delete instance.defaults.headers.common.Authorization;
