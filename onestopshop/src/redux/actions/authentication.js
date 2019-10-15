@@ -2,6 +2,17 @@ import * as actionTypes from "./actionTypes";
 import jwt_decode from "jwt-decode";
 import { setErrors, resetErrors } from "./errors";
 import instance from "./instance";
+import axios from "axios";
+
+export const profile = () => async dispatch => {
+  try {
+    const res = await instance.get("profile/");
+    const profile = res.data;
+    dispatch({ type: actionTypes.FETCH_PROFILE, payload: profile });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const checkForExpiredToken = () => {
   return async dispatch => {
@@ -22,6 +33,7 @@ export const checkForExpiredToken = () => {
         setAuthToken(token);
         // Set user
         dispatch(setCurrentUser(user));
+        dispatch(profile());
       } else {
         dispatch(logout());
       }
@@ -39,10 +51,17 @@ const setAuthToken = async token => {
   }
 };
 
-const setCurrentUser = user => ({
-  type: actionTypes.SET_CURRENT_USER,
-  payload: user
-});
+// const setCurrentUser = user => ({
+//   type: actionTypes.SET_CURRENT_USER,
+//   payload: user
+// });
+
+const setCurrentUser = user => {
+  return dispatch => {
+    dispatch({ type: actionTypes.SET_CURRENT_USER, payload: user });
+    if (user) dispatch(profile());
+  };
+};
 
 export const login = (userData, history) => {
   return async dispatch => {

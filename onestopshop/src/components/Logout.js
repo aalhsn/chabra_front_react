@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.authReducer.user
   };
 };
 export default connect(

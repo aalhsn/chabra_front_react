@@ -1,13 +1,24 @@
-import { SET_CURRENT_USER } from "../actions/actionTypes";
+import * as actionTypes from "../actions/actionTypes";
 
-const initialState = null;
+const initialState = {
+  user: null,
+  profile: null
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURRENT_USER:
+    case actionTypes.SET_CURRENT_USER:
       const user = action.payload;
-      return user;
-
+      return {
+        ...state,
+        user: user
+      };
+    case actionTypes.FETCH_PROFILE:
+      const profile = action.payload;
+      return {
+        ...state,
+        profile: profile
+      };
     default:
       return state;
   }
