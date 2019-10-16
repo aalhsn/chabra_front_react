@@ -31,6 +31,9 @@ class RegistationForm extends Component {
     }
   };
 
+  /**
+   * Remove "dead" code
+   */
   // handlePasswordError = () => {
   //   if (this.props.errors) {
   //     if (this.props.errors.password[0]) {
@@ -84,6 +87,7 @@ class RegistationForm extends Component {
               {/* {this.props.errors ? this.props.errors.password[0] : ""} */}
               {/* {this.handlePasswordError()} */}
             </div>
+            {/* Fix "type" stuff */}
             <input
               id="registerbtn"
               className="btn btn-primary btn-block"

@@ -24,6 +24,9 @@ class LoginForm extends Component {
   };
 
   render() {
+    /**
+     * I was copy pasted indiscriminantly :D
+     */
     const type = this.props.match.url.substring(1);
 
     if (this.props.user) return <Redirect to="/" />;
@@ -67,7 +70,7 @@ class LoginForm extends Component {
               id="loginbtn"
               className="btn btn-primary btn-block"
               type="submit"
-              value={type.replace(/^\w/, c => c.toUpperCase())}
+              value="Login"
             />
           </form>
         </div>

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
+/**
+ * Functional component
+ */
 class ProductCard extends Component {
   render() {
     const product = this.props.product;

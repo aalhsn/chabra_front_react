@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 import jwt_decode from "jwt-decode";
 import { setErrors, resetErrors } from "./errors";
 import instance from "./instance";
-import axios from "axios";
+import axios from "axios"; // ded
 
 export const profile = () => async dispatch => {
   try {
@@ -25,6 +25,9 @@ export const checkForExpiredToken = () => {
       // Decode token and get user info
       const user = jwt_decode(token);
 
+      /**
+       * Remove logs
+       */
       console.log((user.exp - currentTime) / 60);
 
       // Check token expiration
@@ -33,6 +36,9 @@ export const checkForExpiredToken = () => {
         setAuthToken(token);
         // Set user
         dispatch(setCurrentUser(user));
+        /**
+         * Do ya need me? Nah
+         */
         dispatch(profile());
       } else {
         dispatch(logout());
@@ -41,6 +47,9 @@ export const checkForExpiredToken = () => {
   };
 };
 
+/**
+ * `async` I might not need to `await` this
+ */
 const setAuthToken = async token => {
   if (token) {
     await localStorage.setItem("token", token);
@@ -51,6 +60,9 @@ const setAuthToken = async token => {
   }
 };
 
+/**
+ * dead code
+ */
 // const setCurrentUser = user => ({
 //   type: actionTypes.SET_CURRENT_USER,
 //   payload: user
@@ -87,6 +99,9 @@ export const signup = (userData, history) => {
   return async dispatch => {
     try {
       await instance.post("register/", userData);
+      /**
+       * Analyse this flow - do I need to login after signup? What does signup return?
+       */
       dispatch(login(userData, history));
       dispatch(resetErrors());
       history.replace("/");

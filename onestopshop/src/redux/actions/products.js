@@ -2,6 +2,9 @@ import { FETCH_PRODUCTS } from "./actionTypes";
 
 import axios from "axios";
 
+/**
+ * Import your instance?
+ */
 const instance = axios.create({
   baseURL: "https://e5f9a584.ngrok.io/"
 });

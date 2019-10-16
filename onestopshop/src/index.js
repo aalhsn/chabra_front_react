@@ -14,6 +14,10 @@ import { fetchProducts, profile } from "./redux/actions";
 import store from "./redux";
 
 store.dispatch(fetchProducts());
+
+/**
+ * Check if this is necessary - it's definitely in the wrong place
+ */
 store.dispatch(profile());
 
 ReactDOM.render(

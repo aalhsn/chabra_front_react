@@ -5,6 +5,9 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import LoginForm from "./Components/LoginForm";
 import RegistrationForm from "./Components/RegistrationForm";
 import Profile from "./Components/Profile";
+/**
+ * clean up import paths
+ */
 import Loading from "../src/Components/Loading";
 import ProductsList from "../src/Components/ProductsList";
 import ProductDetail from "../src/Components/ProductDetail";
@@ -15,31 +18,25 @@ import ShoppingCart from "./Components/ShoppingCart";
 
 function App({ loading }) {
   const getView = () => {
-    if (loading) {
-      return (
-        <div className="loading">
-          <Loading />
-        </div>
-      );
-    } else {
-      return (
-        <Switch>
-          <Route exact path="/products/:productID" component={ProductDetail} />
-          <Route path="/cart/" component={ShoppingCart} />
-          <Route path="/products/" component={ProductsList} />
-          <Route path="/login" component={LoginForm} />
-          <Route path="/signup" component={RegistrationForm} />
-          <Route path="/profile" component={Profile} />
-          <Redirect exact from="/" to="/products" />
-        </Switch>
-      );
-    }
+    if (loading) return <Loading />;
+    return (
+      <Switch>
+        <Route exact path="/products/:productID" component={ProductDetail} />
+        <Route path="/cart" component={ShoppingCart} />
+        <Route path="/products" component={ProductsList} />
+        <Route path="/login" component={LoginForm} />
+        <Route path="/signup" component={RegistrationForm} />
+        <Route path="/profile" component={Profile} />
+        <Redirect exact from="/" to="/products" />
+      </Switch>
+    );
   };
   return (
     <div id="app" className="container-fluid">
       <NavBar />
 
       <div className="row">
+        {/* Big empty white space? */}
         <div className="col-2">{/* <Sidebar /> */}</div>
         <div className="content col-10">{getView()}</div>
       </div>
