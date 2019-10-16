@@ -1,19 +1,35 @@
 import * as actionTypes from "./actionTypes";
+import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { setErrors, resetErrors } from "./errors";
 import instance from "./instance";
-import axios from "axios";
 
-export const profile = () => async dispatch => {
-  try {
-    const res = await instance.get("profile/");
-    const profile = res.data;
-    dispatch({ type: actionTypes.FETCH_PROFILE, payload: profile });
-  } catch (error) {
-    console.error(error);
-  }
+// export const profile = () => {
+//   return async dispatch => {
+//     try {
+//       const res = await axios.get("http://127.0.0.1:8000/api/profile/");
+//       const profile = res.data;
+//       dispatch({ type: actionTypes.FETCH_PROFILE, payload: profile });
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+// };
+
+export const fetchProfile = () => {
+  return async dispatch => {
+    try {
+      const res = await instance.get("profile/");
+      const profile = res.data;
+      dispatch({
+        type: actionTypes.FETCH_PROFILE,
+        payload: profile
+      });
+    } catch (error) {
+      console.error(error.response.data);
+    }
+  };
 };
-
 export const checkForExpiredToken = () => {
   return async dispatch => {
     // Get token
@@ -25,15 +41,13 @@ export const checkForExpiredToken = () => {
       // Decode token and get user info
       const user = jwt_decode(token);
 
-      console.log((user.exp - currentTime) / 60);
-
       // Check token expiration
       if (user.exp >= currentTime) {
         // Set auth token header
-        setAuthToken(token);
+        dispatch(setAuthToken(token));
         // Set user
         dispatch(setCurrentUser(user));
-        dispatch(profile());
+        // dispatch(profile());
       } else {
         dispatch(logout());
       }
@@ -41,14 +55,17 @@ export const checkForExpiredToken = () => {
   };
 };
 
-const setAuthToken = async token => {
-  if (token) {
-    await localStorage.setItem("token", token);
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-  } else {
-    await localStorage.removeItem("token");
-    delete instance.defaults.headers.common.Authorization;
-  }
+const setAuthToken = token => {
+  return async dispatch => {
+    if (token) {
+      localStorage.setItem("token", token);
+      instance.defaults.headers.common.Authorization = await `Bearer ${token}`;
+      dispatch(fetchProfile());
+    } else {
+      localStorage.removeItem("token");
+      delete instance.defaults.headers.common.Authorization;
+    }
+  };
 };
 
 // const setCurrentUser = user => ({
@@ -59,7 +76,6 @@ const setAuthToken = async token => {
 const setCurrentUser = user => {
   return dispatch => {
     dispatch({ type: actionTypes.SET_CURRENT_USER, payload: user });
-    if (user) dispatch(profile());
   };
 };
 

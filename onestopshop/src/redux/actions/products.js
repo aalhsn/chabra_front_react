@@ -3,7 +3,7 @@ import { FETCH_PRODUCTS } from "./actionTypes";
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://e5f9a584.ngrok.io/"
+  baseURL: "https://chabra.herokuapp.com/"
 });
 
 export const fetchProducts = () => async dispatch => {

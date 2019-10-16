@@ -8,13 +8,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 
 //Redux
-import { fetchProducts, profile } from "./redux/actions";
+import { fetchProducts } from "./redux/actions";
 // import * as actionCreators from "./redux/actions";
 
 import store from "./redux";
 
 store.dispatch(fetchProducts());
-store.dispatch(profile());
 
 ReactDOM.render(
   <Provider store={store}>
