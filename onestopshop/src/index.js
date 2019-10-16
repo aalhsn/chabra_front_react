@@ -1,20 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./App.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-
-//Redux
-import { fetchProducts, profile } from "./redux/actions";
-// import * as actionCreators from "./redux/actions";
-
 import store from "./redux";
 
-store.dispatch(fetchProducts());
-store.dispatch(profile());
+
 
 ReactDOM.render(
   <Provider store={store}>
