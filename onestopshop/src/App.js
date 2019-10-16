@@ -12,6 +12,7 @@ import ProductDetail from "./Components/ProductDetail";
 import NavBar from "./Components/Navigation/NavBar";
 import ShoppingCart from "./Components/ShoppingCart";
 import Checkout from "./Components/Checkout";
+import OrderDetail from "./Components/OrderHistoryDetail";
 
 function App({ loading }) {
   const getView = () => {
@@ -25,6 +26,7 @@ function App({ loading }) {
         <Route path="/signup" component={RegistrationForm} />
         <Route path="/profile" component={Profile} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/order-details" component={OrderDetail} />
         <Redirect exact from="/" to="/products" />
       </Switch>
     );

@@ -17,7 +17,7 @@ class Checkout extends Component {
     this.props.items.forEach(item => {
       total = total + parseFloat(item.price) * parseInt(item.quantity);
     });
-    return total;
+    return total.toFixed(3);
   };
 
   changeHandler = e => {
@@ -86,7 +86,7 @@ class Checkout extends Component {
                       <td>
                         <strong>Total</strong>
                       </td>
-                      <td className="text-right">{this.totalPrice()}</td>
+                      <td className="text-right">{this.totalPrice()} KWD</td>
                     </tr>
                     <tr>
                       <td>Shipping Address</td>

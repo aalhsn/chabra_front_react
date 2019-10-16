@@ -9,7 +9,7 @@ class ShoppingCart extends Component {
     this.props.items.forEach(item => {
       total = total + parseFloat(item.price) * parseFloat(item.quantity);
     });
-    return total;
+    return total.toFixed(3);
   };
   render() {
     const getOrderItem = this.props.items.map(item => (

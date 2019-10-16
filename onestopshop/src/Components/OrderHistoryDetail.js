@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import OrderHistoryDetailCard from "./OrderHistoryDetailCard";
 import { connect } from "react-redux";
 // import * as actionCreators from "../redux/actions";
@@ -29,29 +28,18 @@ class OrderHistoryDetail extends Component {
                       <th scope="col" className="text-center">
                         Date
                       </th>
-                      <th scope="col"> </th>
+                      <th scope="col">Items</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Address</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {getOrderDetails}
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
+                  <tbody>{getOrderDetails}</tbody>
                 </table>
               </div>
             </div>
             <div className="col mb-2">
               <div className="row">
-                <div className="col-sm-12  col-md-6">
-                  <Link to="/products">
-                    <button className="btn btn-block btn-light">
-                      Continue Shopping
-                    </button>
-                  </Link>
-                </div>
+                <div className="col-sm-12  col-md-6"></div>
                 <div className="col-sm-12 col-md-6 text-right"></div>
               </div>
             </div>
