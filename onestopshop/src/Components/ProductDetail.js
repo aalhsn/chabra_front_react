@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
+//Component
 import Loading from "./Loading";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 import { fetchProductDetail, addItem } from "../redux/actions";
+
+
+//Consider memoizing later
 
 class ProductDetail extends Component {
   state = {

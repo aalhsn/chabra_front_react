@@ -1,5 +1,4 @@
 import { FETCH_PRODUCTS } from "./actionTypes";
-
 import instance from "./instance";
 
 export const fetchProducts = () => async dispatch => {

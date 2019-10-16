@@ -34,7 +34,7 @@ const AuthButton = ({ user }) => {
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.authReducer.user
 });
 
 export default connect(mapStateToProps)(AuthButton);

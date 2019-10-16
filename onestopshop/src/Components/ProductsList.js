@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 
 // Components
 import ProductCard from "./ProductCard";
@@ -19,6 +17,7 @@ class ProductsList extends Component {
     const query = this.state.query.toLowerCase();
     return this.props.products.filter(product => {
       return product.name.toLowerCase().includes(query);
+
     });
   };
 
@@ -32,9 +31,10 @@ class ProductsList extends Component {
         <h3 className="mt-5">
           Chabra <FontAwesomeIcon icon={faShoppingBasket} /> جبرة
         </h3>
+
         <SearchBar onChange={this.setQeury} />
         <div className="row">{productCards}</div>
-      </div>
+    </div>
     );
   }
 }

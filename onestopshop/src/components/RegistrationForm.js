@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import * as actionCreators from "../redux/actions";
 import { connect } from "react-redux";
+
+
+//Actions
+import {signup, resetErrors} from "../redux/actions";
 
 class RegistationForm extends Component {
   state = {
@@ -31,16 +34,7 @@ class RegistationForm extends Component {
     }
   };
 
-  // handlePasswordError = () => {
-  //   if (this.props.errors) {
-  //     if (this.props.errors.password[0]) {
-  //       return this.props.errors.password[0]
-  //     }
-  //   }
-  // }
-
   render() {
-    const type = this.props.match.url.substring(1);
 
     if (this.props.user) return <Redirect to="/" />;
 
@@ -68,8 +62,6 @@ class RegistationForm extends Component {
                 id="input"
                 onChange={this.changeHandler}
               />
-
-              {/* {this.props.errors ? this.props.errors.username[0] : ""} */}
             </div>
             <div className="form-group">
               <input
@@ -80,21 +72,18 @@ class RegistationForm extends Component {
                 id="input"
                 onChange={this.changeHandler}
               />
-
-              {/* {this.props.errors ? this.props.errors.password[0] : ""} */}
-              {/* {this.handlePasswordError()} */}
             </div>
             <input
               id="registerbtn"
               className="btn btn-primary btn-block"
               type="submit"
-              value={type.replace(/^\w/, c => c.toUpperCase())}
+              value="signup"
             />
           </form>
         </div>
         <div className="card-footer">
           <Link to="/login" className="btn btn-small btn-link">
-            Already have an account? Login
+            I'm already registered!
           </Link>
         </div>
       </div>
@@ -105,15 +94,15 @@ class RegistationForm extends Component {
 const mapStateToProps = state => {
   return {
     errors: state.errors.errors,
-    user: state.user
+    user: state.authReducer.user
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     signup: (userData, history) =>
-      dispatch(actionCreators.signup(userData, history)),
-    resetErrors: () => dispatch(actionCreators.resetErrors())
+      dispatch(signup(userData, history)),
+    resetErrors: () => dispatch(resetErrors())
   };
 };
 

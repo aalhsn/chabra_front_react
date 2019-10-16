@@ -8,7 +8,7 @@ import productReducer from "./product";
 import cartReducer from "./cart";
 
 const rootReducer = combineReducers({
-  user: authReducer,
+  authReducer: authReducer,
   errors: errorReducer,
   rootProducts: productsReducer,
   rootProduct: productReducer,

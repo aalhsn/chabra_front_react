@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-class ProductCard extends Component {
-  render() {
-    const product = this.props.product;
-    const date = moment(product.date_added).fromNow();
+ const ProductCard = ({product}) => {
+    let date = moment(product.date_added).fromNow();
     return (
       <div className="col-lg-4 col-md-6 col-12">
         <Link to={`/products/${product.id}`} className="card">
@@ -27,7 +25,7 @@ class ProductCard extends Component {
         </Link>
       </div>
     );
-  }
+
 }
 
 export default ProductCard;

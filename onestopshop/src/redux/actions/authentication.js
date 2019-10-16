@@ -3,10 +3,20 @@ import jwt_decode from "jwt-decode";
 import { setErrors, resetErrors } from "./errors";
 import instance from "./instance";
 
+export const profile = () => async dispatch => {
+  try {
+    const res = await instance.get("profile/");
+    const profile = res.data;
+    dispatch({ type: actionTypes.SET_PROFILE, payload: profile });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const checkForExpiredToken = () => {
   return async dispatch => {
     // Get token
-    const token = await localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     if (token) {
       const currentTime = Date.now() / 1000;
@@ -20,6 +30,7 @@ export const checkForExpiredToken = () => {
         setAuthToken(token);
         // Set user
         dispatch(setCurrentUser(user));
+
       } else {
         dispatch(logout());
       }
@@ -29,18 +40,20 @@ export const checkForExpiredToken = () => {
 
 const setAuthToken = async token => {
   if (token) {
-    await localStorage.setItem("token", token);
+     localStorage.setItem("token", token);
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   } else {
-    await localStorage.removeItem("token");
+     localStorage.removeItem("token");
     delete instance.defaults.headers.common.Authorization;
   }
 };
 
-const setCurrentUser = user => ({
-  type: actionTypes.SET_CURRENT_USER,
-  payload: user
-});
+const setCurrentUser = user => {
+  return dispatch => {
+    dispatch({ type: actionTypes.SET_CURRENT_USER, payload: user });
+    if (user) dispatch(profile());
+  };
+};
 
 export const login = (userData, history) => {
   return async dispatch => {
@@ -71,8 +84,8 @@ export const signup = (userData, history) => {
       history.replace("/");
     } catch (error) {
       console.error(error.response.data);
-
       dispatch(setErrors(error.response.data));
+  
     }
   };
 };
