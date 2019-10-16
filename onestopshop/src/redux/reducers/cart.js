@@ -5,7 +5,8 @@ import {
 } from "../actions/actionTypes";
 
 const initialState = {
-  items: []
+  items: [],
+  orders: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,12 +38,14 @@ const reducer = (state = initialState, action) => {
 
     case CHECKOUT:
       return {
-        ...state,
+        orders: state.orders.concat(action.payload),
         items: []
       };
 
     default:
-      return state;
+      return {
+        ...state
+      };
   }
 };
 

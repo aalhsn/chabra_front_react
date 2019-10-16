@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import ProductCard from "./ProductCard";
 import SearchBar from "./SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBasket } from "@fortawesome/fontawesome-free";
+import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 
 class ProductsList extends Component {
   state = {

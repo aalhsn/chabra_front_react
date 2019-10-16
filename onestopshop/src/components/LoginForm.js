@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 //Actions
-import {login, resetErrors} from "../redux/actions";
+import { login, resetErrors } from "../redux/actions";
 
 class LoginForm extends Component {
   state = {
@@ -89,8 +89,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    login: (userData, history) =>
-      dispatch(login(userData, history)),
+    login: (userData, history) => dispatch(login(userData, history)),
     resetErrors: () => dispatch(resetErrors())
   };
 };
