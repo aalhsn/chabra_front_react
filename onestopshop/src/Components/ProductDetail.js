@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Loading from "./Loading";
-import "bootstrap/dist/css/bootstrap.min.css";
 
+//Component
+import Loading from "./Loading";
+
+//Actions
 import { fetchProductDetail } from "../redux/actions";
+
+//Consider memoizing later
 
 class ProductDetail extends Component {
   componentDidMount() {

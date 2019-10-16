@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import * as actionCreators from "../redux/actions";
 import { connect } from "react-redux";
+
+//Actions
+import {login, resetErrors} from "../redux/actions";
 
 class LoginForm extends Component {
   state = {
@@ -24,8 +26,6 @@ class LoginForm extends Component {
   };
 
   render() {
-    const type = this.props.match.url.substring(1);
-
     if (this.props.user) return <Redirect to="/" />;
 
     const errors = this.props.errors;
@@ -67,7 +67,7 @@ class LoginForm extends Component {
               id="loginbtn"
               className="btn btn-primary btn-block"
               type="submit"
-              value={type.replace(/^\w/, c => c.toUpperCase())}
+              value="Login"
             />
           </form>
         </div>
@@ -90,8 +90,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     login: (userData, history) =>
-      dispatch(actionCreators.login(userData, history)),
-    resetErrors: () => dispatch(actionCreators.resetErrors())
+      dispatch(login(userData, history)),
+    resetErrors: () => dispatch(resetErrors())
   };
 };
 
