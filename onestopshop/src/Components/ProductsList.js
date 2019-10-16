@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-
 // Components
 import ProductCard from "./ProductCard";
 import SearchBar from "./SearchBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingBasket } from "@fortawesome/fontawesome-free";
 
 class ProductsList extends Component {
   state = {
@@ -17,7 +18,6 @@ class ProductsList extends Component {
     const query = this.state.query.toLowerCase();
     return this.props.products.filter(product => {
       return product.name.toLowerCase().includes(query);
-
     });
   };
 
@@ -34,7 +34,7 @@ class ProductsList extends Component {
 
         <SearchBar onChange={this.setQeury} />
         <div className="row">{productCards}</div>
-    </div>
+      </div>
     );
   }
 }
