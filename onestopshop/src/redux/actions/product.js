@@ -1,5 +1,6 @@
 import { FETCH_PRODUCT_DETAIL } from "./actionTypes";
-import instance from "./instance"
+import instance from "./instance";
+
 
 export const fetchProductDetail = productID => async dispatch => {
   try {

@@ -29,7 +29,6 @@ function App({ loading }) {
       );
     }
   return (
-
     <div id="app" className="container">
     <NavBar/>
     <div classNAme="col-12">

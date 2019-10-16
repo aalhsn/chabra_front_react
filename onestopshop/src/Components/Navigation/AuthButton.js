@@ -4,11 +4,7 @@ import { connect } from "react-redux";
 import Logout from "../Logout";
 // Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSignOutAlt,
-  faSignInAlt,
-  faUserPlus
-} from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 const AuthButton = ({ user }) => {
   let buttons = [

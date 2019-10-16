@@ -3,19 +3,36 @@ import { connect } from "react-redux";
 
 //Component
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
-//Actions
-import { fetchProductDetail } from "../redux/actions";
+import { fetchProductDetail, addItem } from "../redux/actions";
+
 
 //Consider memoizing later
 
 class ProductDetail extends Component {
+  state = {
+    quantity: 1
+  };
+
   componentDidMount() {
     this.props.fetchProductDetail(this.props.match.params.productID);
   }
 
   handleClick = () => {
-    alert(`${this.props.product.name} added to cart`);
+    const newItem = {
+      name: this.props.product.name,
+      price: this.props.product.price,
+      quantity: this.state.quantity
+    };
+    this.props.addItem(newItem);
+  };
+
+  changeQuantity = number => {
+    if (this.state.quantity >= 0) {
+      const newQuantity = this.state.quantity + number;
+      this.setState({ quantity: newQuantity });
+    }
   };
 
   render() {
@@ -24,40 +41,48 @@ class ProductDetail extends Component {
     } else {
       const product = this.props.product;
       return (
-        <div className="col-lg-4 col-md-6 col-12 mt-5">
-          <div className="image">
-            <img
-              className="card-img-top img-fluid border"
-              src={product.img}
-              alt={product.name}
-            />
-          </div>
-          <div className="card-body border">
-            <h5 className="card-title">
-              <span>{product.name}</span>
-            </h5>
-            <p>
-              {product.description}{" "}
-              <span className="float-right">{product.price}KWD</span>
-            </p>
-            <small className="card-text">From farm to table!</small>
-            <br />
-            {product.active && (
-              <button
-                className="float-right"
-                onClick={() => this.handleClick()}
-              >
-                ORDER NOW
-              </button>
-            )}
-            {!product.active && (
-              <p className="bg-warning">
-                This product is currently out of stock.
+        <>
+          <div className="col-lg-4 col-md-6 col-12 mt-5">
+            <div className="image">
+              <img
+                className="card-img-top img-fluid border"
+                src={product.img}
+                alt={product.name}
+              />
+            </div>
+            <div className="card-body border">
+              <h5 className="card-title">
+                <span>{product.name}</span>
+              </h5>
+              <p>
+                {product.description}{" "}
+                <span className="float-right">{product.price}KWD</span>
               </p>
-            )}
-            <br />
+              <small className="card-text">From farm to table!</small>
+              <br />
+              <div style={{ alignContent: "center" }}>
+                <button
+                  onClick={() =>
+                    this.state.quantity > 0 && this.changeQuantity(-1)
+                  }
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  value={this.state.quantity}
+                  style={{ textAlign: "center" }}
+                />
+                <button onClick={() => this.changeQuantity(1)}>+</button>
+              </div>
+              <br />
+              <button onClick={() => this.handleClick()}>Add to cart</button>
+              <Link to="/cart">
+                <button className="btn btn-success">Shopping Basket</button>
+              </Link>
+            </div>
           </div>
-        </div>
+        </>
       );
     }
   }
@@ -72,7 +97,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchProductDetail: productID => dispatch(fetchProductDetail(productID))
+    fetchProductDetail: productID => dispatch(fetchProductDetail(productID)),
+    addItem: product => dispatch(addItem(product))
   };
 };
 
