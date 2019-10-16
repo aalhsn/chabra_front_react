@@ -4,6 +4,9 @@ import * as actionCreators from "../redux/actions";
 
 class Profile extends Component {
   componentDidMount() {
+    /**
+     * Do you need this? Probably not
+     */
     this.props.fetchProfile();
   }
   render() {

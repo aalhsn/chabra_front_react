@@ -5,6 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { fetchProductDetail } from "../redux/actions";
 
+/**
+ * Consider memoizing product detail fetch
+ */
+
 class ProductDetail extends Component {
   componentDidMount() {
     this.props.fetchProductDetail(this.props.match.params.productID);

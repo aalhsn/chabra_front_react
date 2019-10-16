@@ -28,6 +28,9 @@ const ProfileButton = ({ user }) => {
   }
 
   {
+    /**
+     * This is a dead block.
+     */
     /* return <ul className="navbar-nav ml-auto">{buttons}</ul>; */
   }
 };
