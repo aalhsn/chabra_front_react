@@ -10,23 +10,17 @@ class ShoppingCard extends Component {
         <td>
           <img
             style={{ height: 50, width: 50 }}
-            src={this.props.orders.orderItem.image}
-            alt={this.props.orders.orderItem.name}
+            src={this.props.orderItem.img}
+            alt={this.props.orderItem.name}
           />
         </td>
-        <td>{this.props.orders.orderItem.name}</td>
-        <td>
-          <input
-            className="form-control"
-            type="text"
-            value={this.props.orders.orderItem.quantity}
-          />
-        </td>
-        <td className="text-right">{this.props.orders.orderItem.price}</td>
+        <td>{this.props.orderItem.name}</td>
+        <td>{this.props.orderItem.quantity}</td>
+        <td className="text-right">{this.props.orderItem.price}</td>
         <td className="text-right">
           <button className="btn btn-sm btn-danger">
             <i className="fa fa-trash"></i>{" "}
-          </button>{" "}
+          </button>
         </td>
       </tr>
     );

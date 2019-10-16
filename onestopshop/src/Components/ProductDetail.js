@@ -2,18 +2,33 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Loading from "./Loading";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
-import { fetchProductDetail } from "../redux/actions";
-//import Cart from "./Cart";
-import ShoppingCard from "./ShoppingCard";
+import { fetchProductDetail, addItem } from "../redux/actions";
 
 class ProductDetail extends Component {
+  state = {
+    quantity: 1
+  };
+
   componentDidMount() {
     this.props.fetchProductDetail(this.props.match.params.productID);
   }
 
   handleClick = () => {
-    alert(`${this.props.product.name} added to cart`);
+    const newItem = {
+      name: this.props.product.name,
+      price: this.props.product.price,
+      quantity: this.state.quantity
+    };
+    this.props.addItem(newItem);
+  };
+
+  changeQuantity = number => {
+    if (this.state.quantity >= 0) {
+      const newQuantity = this.state.quantity + number;
+      this.setState({ quantity: newQuantity });
+    }
   };
 
   render() {
@@ -41,24 +56,28 @@ class ProductDetail extends Component {
               </p>
               <small className="card-text">From farm to table!</small>
               <br />
-              {product.active && (
+              <div style={{ alignContent: "center" }}>
                 <button
-                  className="float-right"
-                  onClick={() => this.handleClick()}
+                  onClick={() =>
+                    this.state.quantity > 0 && this.changeQuantity(-1)
+                  }
                 >
-                  Add to cart
+                  -
                 </button>
-              )}
-              {!product.active && (
-                <p className="bg-warning">
-                  This product is currently out of stock.
-                </p>
-              )}
+                <input
+                  type="text"
+                  value={this.state.quantity}
+                  style={{ textAlign: "center" }}
+                />
+                <button onClick={() => this.changeQuantity(1)}>+</button>
+              </div>
               <br />
+              <button onClick={() => this.handleClick()}>Add to cart</button>
+              <Link to="/cart">
+                <button className="btn btn-success">Shopping Basket</button>
+              </Link>
             </div>
           </div>
-          <p>Cart here</p>
-          <ShoppingCard />
         </>
       );
     }
@@ -74,7 +93,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchProductDetail: productID => dispatch(fetchProductDetail(productID))
+    fetchProductDetail: productID => dispatch(fetchProductDetail(productID)),
+    addItem: product => dispatch(addItem(product))
   };
 };
 

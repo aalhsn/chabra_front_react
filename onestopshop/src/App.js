@@ -8,7 +8,6 @@ import Loading from "../src/Components/Loading";
 import ProductsList from "../src/Components/ProductsList";
 import ProductDetail from "../src/Components/ProductDetail";
 import NavBar from "./Components/Navigation/NavBar";
-import Cart from "./Components/Cart";
 
 import { connect } from "react-redux";
 import ShoppingCart from "./Components/ShoppingCart";
@@ -26,7 +25,6 @@ function App({ loading }) {
         <Switch>
           <Route exact path="/products/:productID" component={ProductDetail} />
           <Route path="/cart/" component={ShoppingCart} />
-          <Route path="/temp/" component={Cart} />
           <Route path="/products/" component={ProductsList} />
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={RegistrationForm} />

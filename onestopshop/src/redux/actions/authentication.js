@@ -14,8 +14,6 @@ export const checkForExpiredToken = () => {
       // Decode token and get user info
       const user = jwt_decode(token);
 
-      console.log((user.exp - currentTime) / 60);
-
       // Check token expiration
       if (user.exp >= currentTime) {
         // Set auth token header

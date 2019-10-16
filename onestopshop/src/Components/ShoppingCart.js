@@ -4,12 +4,18 @@ import { connect } from "react-redux";
 import ShoppingCard from "./ShoppingCard";
 
 class ShoppingCart extends Component {
-  getorderItem = () => {
-    this.props.orders.map(order => (
-      <ShoppingCard orderItem={order.orderItem} />
-    ));
+  totalPrice = () => {
+    let total = 0;
+    this.props.items.forEach(item => {
+      total = total + parseFloat(item.price) * parseFloat(item.quantity);
+    });
+    return total;
   };
   render() {
+    const getOrderItem = this.props.items.map(item => (
+      <ShoppingCard key={item.name} orderItem={item} />
+    ));
+
     return (
       <>
         <section className="jumbotron text-center">
@@ -37,7 +43,7 @@ class ShoppingCart extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.getorderItem()}
+                    {getOrderItem}
                     <tr>
                       <td></td>
                       <td></td>
@@ -47,7 +53,7 @@ class ShoppingCart extends Component {
                         <strong>Total</strong>
                       </td>
                       <td className="text-right">
-                        <strong>346,90 KWD</strong>
+                        <strong>{this.totalPrice()} KWD</strong>
                       </td>
                     </tr>
                   </tbody>
@@ -81,7 +87,7 @@ class ShoppingCart extends Component {
 
 const mapStateToProps = state => {
   return {
-    orders: state.cartReducer.addedItems
+    items: state.cartReducer.items
   };
 };
 

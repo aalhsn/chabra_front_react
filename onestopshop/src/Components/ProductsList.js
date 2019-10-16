@@ -18,7 +18,7 @@ class ProductsList extends Component {
   filterProducts = () => {
     const query = this.state.query.toLowerCase();
     return this.props.products.filter(product => {
-      return product.name.toLowerCase().includes(query) ||  product.origin.toLowerCase().includes(query)
+      return product.name.toLowerCase().includes(query);
     });
   };
 
@@ -29,7 +29,9 @@ class ProductsList extends Component {
 
     return (
       <div className="authors">
-        <h3 className="mt-5">Chabra  <FontAwesomeIcon icon={faShoppingBasket} / > جبرة</h3>
+        <h3 className="mt-5">
+          Chabra <FontAwesomeIcon icon={faShoppingBasket} /> جبرة
+        </h3>
         <SearchBar onChange={this.setQeury} />
         <div className="row">{productCards}</div>
       </div>
