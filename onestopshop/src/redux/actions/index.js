@@ -3,7 +3,7 @@ export {
   logout,
   signup,
   checkForExpiredToken,
-  fetchProfile
+  profile
 } from "./authentication";
 
 export { setErrors, resetErrors } from "./errors";

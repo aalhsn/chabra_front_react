@@ -41,6 +41,7 @@ class RegistationForm extends Component {
 
   render() {
     const type = this.props.match.url.substring(1);
+    console.log(this.props.errors);
 
     if (this.props.user) return <Redirect to="/" />;
 
@@ -105,7 +106,7 @@ class RegistationForm extends Component {
 const mapStateToProps = state => {
   return {
     errors: state.errors.errors,
-    user: state.authReducer.user
+    user: state.user
   };
 };
 
