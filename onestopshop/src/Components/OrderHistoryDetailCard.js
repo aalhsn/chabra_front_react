@@ -24,11 +24,21 @@ class OrderHistoryDetailCard extends Component {
           {this.props.order.items.map(item => (
             <>
               <ul style={{ listStyleType: "none" }}>
+                <li> {item.quantity}</li>
+              </ul>
+            </>
+          ))}
+        </td>
+        <td>
+          {this.props.order.items.map(item => (
+            <>
+              <ul style={{ listStyleType: "none" }}>
                 <li> {item.price}</li>
               </ul>
             </>
           ))}
         </td>
+        <td>{this.props.order.total_order_price}</td>
         <td>{this.props.order.address}</td>
       </tr>
     );

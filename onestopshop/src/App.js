@@ -13,6 +13,7 @@ import NavBar from "./Components/Navigation/NavBar";
 import ShoppingCart from "./Components/ShoppingCart";
 import Checkout from "./Components/Checkout";
 import OrderDetail from "./Components/OrderHistoryDetail";
+import OrderList from "./Components/OrderHistory";
 
 function App({ loading }) {
   const getView = () => {
@@ -26,7 +27,8 @@ function App({ loading }) {
         <Route path="/signup" component={RegistrationForm} />
         <Route path="/profile" component={Profile} />
         <Route path="/checkout" component={Checkout} />
-        <Route path="/order-details" component={OrderDetail} />
+        <Route path="/order-details/:orderID?" component={OrderDetail} />
+        <Route path="/order-history/" component={OrderList} />
         <Redirect exact from="/" to="/products" />
       </Switch>
     );

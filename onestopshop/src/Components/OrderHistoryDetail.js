@@ -24,11 +24,13 @@ class OrderHistoryDetail extends Component {
                 <table className="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Order ID</th>
+                      <th scope="col">Order Ref.</th>
                       <th scope="col" className="text-center">
                         Date
                       </th>
                       <th scope="col">Items</th>
+                      <th scope="col">Qty</th>
+                      <th scope="col">Item Price</th>
                       <th scope="col">Total</th>
                       <th scope="col">Address</th>
                     </tr>
