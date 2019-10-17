@@ -42,7 +42,6 @@ class Checkout extends Component {
       customer: this.props.user
     };
     this.props.checkout(newOrder);
-    alert(this.props.orders);
   };
   render() {
     if (!this.props.user) return <Redirect to="/login" />;

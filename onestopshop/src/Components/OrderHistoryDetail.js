@@ -28,11 +28,21 @@ class OrderHistoryDetail extends Component {
                       <th scope="col" className="text-center">
                         Date
                       </th>
-                      <th scope="col">Items</th>
-                      <th scope="col">Qty</th>
-                      <th scope="col">Item Price</th>
-                      <th scope="col">Total</th>
-                      <th scope="col">Address</th>
+                      <th scope="col" className="text-center">
+                        Items
+                      </th>
+                      <th scope="col" className="text-center">
+                        Qty
+                      </th>
+                      <th scope="col" className="text-center">
+                        Item Price
+                      </th>
+                      <th scope="col" className="text-center">
+                        Total
+                      </th>
+                      <th scope="col" className="text-center">
+                        Address
+                      </th>
                     </tr>
                   </thead>
                   <tbody>{getOrderDetails}</tbody>
