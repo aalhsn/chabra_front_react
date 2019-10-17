@@ -8,11 +8,7 @@ import { logout } from "../redux/actions/authentication";
 class Logout extends Component {
   render() {
     const logout = () => {
-      return (
-        <button danger onClick={this.props.logout}>
-          Logout
-        </button>
-      );
+      return <button onClick={this.props.logout}>Logout</button>;
     };
 
     const login = () => {

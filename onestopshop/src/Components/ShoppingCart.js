@@ -9,7 +9,7 @@ class ShoppingCart extends Component {
     this.props.items.forEach(item => {
       total = total + parseFloat(item.price) * parseFloat(item.quantity);
     });
-    return total;
+    return total.toFixed(3);
   };
   render() {
     const getOrderItem = this.props.items.map(item => (
@@ -70,9 +70,9 @@ class ShoppingCart extends Component {
                   </Link>
                 </div>
                 <div className="col-sm-12 col-md-6 text-right">
-                  <Link to="/checkout">
+                  <Link to="/checkout" params={{ total: this.totalPrice() }}>
                     <button className="btn btn-lg btn-block btn-success text-uppercase">
-                      Checkout
+                      Proceed to checkout
                     </button>
                   </Link>
                 </div>
