@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import OrderHistoryDetailCard from "./OrderHistoryDetailCard";
 import { connect } from "react-redux";
-// import * as actionCreators from "../redux/actions";
+import { Redirect } from "react-router-dom";
 
 class OrderHistoryDetail extends Component {
   render() {
+    if (!this.props.user) return <Redirect to="/" />;
+
     const getOrderDetails = this.props.orders.map(order => (
       <OrderHistoryDetailCard key={order.ref} order={order} />
     ));
