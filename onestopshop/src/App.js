@@ -27,8 +27,8 @@ function App({ loading }) {
         <Route path="/signup" component={RegistrationForm} />
         <Route path="/profile" component={Profile} />
         <Route path="/checkout" component={Checkout} />
-        <Route path="/order-details/:orderID?" component={OrderDetail} />
-        <Route path="/order-history/" component={OrderList} />
+        <Route exact path="/order-details/:orderID" component={OrderDetail} />
+        <Route  path="/order-history/" component={OrderList} />
         <Redirect exact from="/" to="/products" />
       </Switch>
     );

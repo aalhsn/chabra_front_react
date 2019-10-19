@@ -21,8 +21,6 @@ class ProductDetail extends Component {
   handleClick = () => {
     const newItem = {
       id: this.props.product.id,
-      name: this.props.product.name,
-      price: this.props.product.price,
       quantity: this.state.quantity
     };
     this.props.addItem(newItem);

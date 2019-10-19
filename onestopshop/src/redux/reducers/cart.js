@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       const newItem = action.payload;
-      let checkItem = state.items.find(item => item.name === newItem.name);
+      let checkItem = state.items.find(item => item.id === newItem.id);
       if (checkItem) {
         checkItem.quantity += newItem.quantity;
         console.log("Cart reducer item:", checkItem);

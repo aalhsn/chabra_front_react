@@ -4,13 +4,18 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 class OrderHistoryDetail extends Component {
+  componentDidMount() {
+    const order = this.props.orders.filter(order => order.ref === this.props.match.params.orderID);
+  }
+
   render() {
+
     if (!this.props.user) return <Redirect to="/" />;
 
-    const getOrderDetails = this.props.orders.map(order => (
-      <OrderHistoryDetailCard key={order.ref} order={order} />
-    ));
+     const order = this.props.orders.filter(order => order.ref === this.props.match.params.orderID);
+  
 
+  
     return (
       <>
         <section className="jumbotron text-center">
@@ -47,7 +52,9 @@ class OrderHistoryDetail extends Component {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>{getOrderDetails}</tbody>
+                  <tbody>
+                  <OrderHistoryDetailCard key={order.ref} order={order} />
+                  </tbody>
                 </table>
               </div>
             </div>

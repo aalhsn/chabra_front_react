@@ -12,7 +12,7 @@ class OrderHistoryCard extends Component {
         <td>{this.props.order.ref}</td>
         <td>{this.props.order.date}</td>
         <td className="text-right">
-          <Link to="/order-details">
+        <Link to={`/order-details/${this.props.order.ref}/`}>
             <button className="btn btn-lg btn-block btn-success">
               <FontAwesomeIcon icon={faList} />
             </button>

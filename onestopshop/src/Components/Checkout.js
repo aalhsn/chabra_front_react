@@ -32,15 +32,15 @@ class Checkout extends Component {
   };
 
   handleClick = () => {
-    const newOrder = {
-      id: "need it from backend",
-      ref: "CH" + this.OrderNumber(),
-      items: this.props.items,
-      total_order_price: this.totalPrice(),
-      address: this.state.address,
-      date: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
-      customer: this.props.user
-    };
+    const newOrder = this.props.items
+      // id: "need it from backend",
+      // ref: "CH" + this.OrderNumber(),
+      // items: this.props.items,
+      // total_order_price: this.totalPrice(),
+      // address: this.state.address,
+      // date: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
+      // customer: this.props.user
+    
     this.props.checkout(newOrder);
   };
   render() {
