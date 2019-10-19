@@ -24,6 +24,11 @@ const AuthButton = ({ user }) => {
     buttons = (
       <>
         <span className="navbar-text">{user.username}</span>
+        <li key="profileButton" className="nav-item">
+          <Link to="/profile" className="nav-link nav">
+            Profile
+          </Link>
+        </li>
 
         <Logout />
       </>
