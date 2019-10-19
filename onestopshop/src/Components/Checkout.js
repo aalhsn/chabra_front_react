@@ -28,7 +28,7 @@ class Checkout extends Component {
     let total = Math.random()
       .toString(36)
       .toUpperCase();
-    return total.substr(5, 8);
+    return total.substr(3, 5);
   };
 
   handleClick = () => {

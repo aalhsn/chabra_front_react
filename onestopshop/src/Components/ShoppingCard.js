@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
 // import { Link, Redirect } from "react-router-dom";
-// import * as actionCreators from "../redux/actions";
-// import { connect } from "react-redux";
+import { removeItem } from "../redux/actions";
 
 class ShoppingCard extends Component {
+  handleClick = () => {
+    this.props.removeItem(this.props.orderItem);
+  };
   render() {
     return (
       <tr>
@@ -18,12 +23,25 @@ class ShoppingCard extends Component {
         <td>{this.props.orderItem.quantity}</td>
         <td className="text-right">{this.props.orderItem.price}</td>
         <td className="text-right">
-          <button className="btn btn-sm btn-danger">
-            <i className="fa fa-trash"></i>{" "}
+          <button
+            className="btn btn-sm btn-danger"
+            onClick={() => this.handleClick()}
+          >
+            <FontAwesomeIcon icon={faTrash} />
           </button>
         </td>
       </tr>
     );
   }
 }
-export default ShoppingCard;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    removeItem: item => dispatch(removeItem(item))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ShoppingCard);

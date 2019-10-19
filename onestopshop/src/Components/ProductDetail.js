@@ -72,6 +72,7 @@ class ProductDetail extends Component {
                   type="text"
                   value={this.state.quantity}
                   style={{ textAlign: "center" }}
+                  readOnly={this.state.quantity}
                 />
                 <button onClick={() => this.changeQuantity(1)}>+</button>
               </div>
