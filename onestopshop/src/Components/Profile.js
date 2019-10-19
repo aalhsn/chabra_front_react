@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Profile extends Component {
   render() {
+    if (!this.props.user) return <Redirect to="/" />;
     return (
       <div className="card col-6 mx-auto p-0" style={{ marginTop: "10%" }}>
         <h1>Profile</h1>
