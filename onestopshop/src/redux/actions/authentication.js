@@ -1,4 +1,5 @@
 import * as actionTypes from "./actionTypes";
+import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { setErrors, resetErrors } from "./errors";
 import instance from "./instance";
@@ -14,60 +15,35 @@ export const profile = () => async dispatch => {
   }
 };
 
-export const checkForExpiredToken = () => {
-  return async dispatch => {
-    // Get token
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      const currentTime = Date.now() / 1000;
-
-      // Decode token and get user info
-      const user = jwt_decode(token);
-
-      // Check token expiration
-      if (user.exp >= currentTime) {
-        // Set auth token header
-        setAuthToken(token);
-        // Set user
-        dispatch(setCurrentUser(user));
-
-      } else {
-        dispatch(logout());
-      }
-    }
-  };
-};
-
-const setAuthToken = async token => {
+const setCurrentUser = token => {
+  let user;
   if (token) {
-     localStorage.setItem("token", token);
+    localStorage.setItem("token", token);
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+    user = jwt_decode(token);
   } else {
-     localStorage.removeItem("token");
+    localStorage.removeItem("token");
     delete instance.defaults.headers.common.Authorization;
+    user = null;
   }
-};
 
-const setCurrentUser = user => {
-  return dispatch => {
-    dispatch({ type: actionTypes.SET_CURRENT_USER, payload: user });
-    if (user) dispatch(profile());
+  return {
+    type: actionTypes.SET_CURRENT_USER,
+    payload: user
   };
 };
 
 export const login = (userData, history) => {
   return async dispatch => {
     try {
-      let response = await instance.post("login/", userData);
-      let user = response.data;
-      let decodedUser = jwt_decode(user.access);
-      setAuthToken(user.access);
-      dispatch(setCurrentUser(decodedUser));
+      const response = await instance.post("login/", userData);
+      const user = response.data;
+      dispatch(setCurrentUser(user.access));
       dispatch(resetErrors());
+
       history.replace("/");
     } catch (error) {
-      console.error(error);
+      console.log(error);
       dispatch({
         type: actionTypes.SET_ERRORS,
         payload: error.response.data
@@ -79,21 +55,41 @@ export const login = (userData, history) => {
 export const signup = (userData, history) => {
   return async dispatch => {
     try {
-      await instance.post("register/", userData);
+      const res = await instance.post("register/", userData);
+      const user = res.data;
+
+      dispatch(setCurrentUser(user.access));
+
       dispatch(login(userData, history));
       dispatch(resetErrors());
+
       history.replace("/");
     } catch (error) {
       console.error(error.response.data);
       dispatch(setErrors(error.response.data));
-  
     }
   };
 };
 
-export const logout = () => {
-  setAuthToken();
-  return setCurrentUser();
+export const logout = () => setCurrentUser();
+
+export const checkForExpiredToken = () => {
+  // Check for token expiration
+  const token = localStorage.getItem("token");
+  let user = null;
+  if (token) {
+    const currentTimeInSeconds = Date.now() / 1000;
+
+    // Decode token and get user info
+    user = jwt_decode(token);
+
+    // Check token expiration
+    if (user.exp >= currentTimeInSeconds) {
+      // Set user
+      return setCurrentUser(token);
+    }
+  }
+  return logout();
 };
 
 

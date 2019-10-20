@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-
 //Actions
-import {signup, resetErrors} from "../redux/actions";
+import { signup, resetErrors } from "../redux/actions";
 
 class RegistationForm extends Component {
   state = {
@@ -35,7 +34,6 @@ class RegistationForm extends Component {
   };
 
   render() {
-
     if (this.props.user) return <Redirect to="/" />;
 
     const errors = this.props.errors;
@@ -98,8 +96,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signup: (userData, history) =>
-      dispatch(signup(userData, history)),
+    signup: (userData, history) => dispatch(signup(userData, history)),
     resetErrors: () => dispatch(resetErrors())
   };
 };

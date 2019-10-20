@@ -5,10 +5,8 @@ import { connect } from "react-redux";
 // Components
 import AuthButton from "./AuthButton";
 
-import ProfileButton from "./ProfileButton";
-
 import icon from "./logo-web.png";
-const NavBar = props => {
+const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg fixed-top nav" id="mainNav">
       <Link className="navbar-brand" to="/">
@@ -33,7 +31,6 @@ const NavBar = props => {
       </button>
 
       <AuthButton />
-      <ProfileButton />
     </nav>
   );
 };
