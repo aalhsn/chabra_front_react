@@ -85,7 +85,7 @@ class ProductDetail extends Component {
                   </button>
                 </Link>
                   <Link to="/home">
-                    <button className="btn btn-block btn-light">
+                    <button id="btn-cont" className="btn btn-info">
                       Continue Shopping
                     </button>
                   </Link>

@@ -32,6 +32,16 @@ body {
   opacity: 0.9;
 }
 
+#my-cart {
+  font-weight: 800;
+  color: #fff;
+  font-size: 30px;
+  font-family: "Poppins", Arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  top: 200px;
+}
 #loading {
   position: relative;
   top: 250px;
@@ -83,6 +93,7 @@ body {
   text-align: center;
   background-position: bottom right;
   color: white;
+  margin-bottom: 100px;
 }
 .product-name {
   font-size: 30px;
@@ -111,6 +122,10 @@ body {
   right: 0;
 }
 
+#overlay {
+  opacity: 0.8;
+  background-color: black;
+}
 .hero-text {
   font-size: 8vw;
   color: #fff;
@@ -203,9 +218,13 @@ body {
 #btn-basket {
   margin: 15px;
   border-radius: 20px;
-  width: 150px;
+  width: 200px;
 }
 
+#btn-cont {
+
+  border-radius: 20px;
+}
 #btn-basket:hover,
 #btn-cart:hover {
   background-color: black;
@@ -259,3 +278,5 @@ body {
 .product-head {
   font-weight: bold;
 }
+
+

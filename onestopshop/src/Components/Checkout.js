@@ -24,14 +24,14 @@ class Checkout extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-
   handleClick = () => {
     let newOrders = {
-      baskets:this.props.products,
-      address : this.state.address
-    }
+      baskets: this.props.products,
+      address: this.state.address
+    };
     this.props.checkout(newOrders);
   };
+
   render() {
     if (!this.props.user) return <Redirect to="/login" />;
     const getOrderItems = this.props.products.map(item => (
