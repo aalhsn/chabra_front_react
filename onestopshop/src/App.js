@@ -20,7 +20,11 @@ function App({ loading }) {
     if (loading) return <Loading />;
     return (
       <Switch>
-        <Route exact path="/order-details/:orderID" component={OrderHistoryDetail} />
+        <Route
+          exact
+          path="/order-details/:orderID"
+          component={OrderHistoryDetail}
+        />
         <Route exact path="/products/:productID" component={ProductDetail} />
         <Route path="/cart/" component={ShoppingCart} />
         <Route path="/login" component={LoginForm} />
@@ -28,10 +32,9 @@ function App({ loading }) {
         <Route path="/profile" component={Profile} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/home" component={Home} />
-        <Route path="/order-details/:orderID?" component={OrderDetail} />
+
         <Route path="/order-history/" component={OrderList} />
         <Redirect exact from="/" to="/home" />
-
       </Switch>
     );
   };

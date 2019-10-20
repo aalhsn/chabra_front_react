@@ -11,6 +11,7 @@ import store from "./redux";
 
 // Styling
 import "./assets/css/main.css";
+import "./assets/css/style.scss";
 
 // JS
 import "./assets/js/main.js";
