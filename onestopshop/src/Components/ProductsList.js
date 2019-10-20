@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 // Components
 import ProductCard from "./ProductCard";
 import SearchBar from "./SearchBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 
 class ProductsList extends Component {
   state = {
@@ -28,12 +26,10 @@ class ProductsList extends Component {
 
     return (
       <div className="authors">
-        <h3 className="mt-5">
-          Chabra <FontAwesomeIcon icon={faShoppingBasket} /> جبرة
-        </h3>
-
         <SearchBar onChange={this.setQeury} />
-        <div className="row">{productCards}</div>
+        <div className="row" id="card-row">
+          {productCards}
+        </div>
       </div>
     );
   }

@@ -7,13 +7,13 @@ import LoginForm from "./Components/LoginForm";
 import RegistrationForm from "./Components/RegistrationForm";
 import Profile from "./Components/Profile";
 import Loading from "./Components/Loading";
-import ProductsList from "./Components/ProductsList";
 import ProductDetail from "./Components/ProductDetail";
 import NavBar from "./Components/Navigation/NavBar";
 import ShoppingCart from "./Components/ShoppingCart";
 import Checkout from "./Components/Checkout";
 import OrderHistoryDetail from "./Components/OrderHistoryDetail";
 import OrderList from "./Components/OrderHistory";
+import Home from "./Components/Home";
 
 function App({ loading }) {
   const getView = () => {
@@ -23,20 +23,22 @@ function App({ loading }) {
         <Route exact path="/order-details/:orderID" component={OrderHistoryDetail} />
         <Route exact path="/products/:productID" component={ProductDetail} />
         <Route path="/cart/" component={ShoppingCart} />
-        <Route path="/products/" component={ProductsList} />
         <Route path="/login" component={LoginForm} />
         <Route path="/signup" component={RegistrationForm} />
         <Route path="/profile" component={Profile} />
         <Route path="/checkout" component={Checkout} />
-        <Route  path="/order-history/" component={OrderList} />
-        <Redirect exact from="/" to="/products" />
+        <Route path="/home" component={Home} />
+        <Route path="/order-details/:orderID?" component={OrderDetail} />
+        <Route path="/order-history/" component={OrderList} />
+        <Redirect exact from="/" to="/home" />
+
       </Switch>
     );
   };
   return (
-    <div id="app" className="container">
+    <div>
+      <div>{getView()}</div>
       <NavBar />
-      <div className="col-12">{getView()}</div>
     </div>
   );
 }

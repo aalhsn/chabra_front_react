@@ -25,7 +25,7 @@ const AuthButton = ({ user }) => {
       <>
         <span className="navbar-text">{user.username}</span>
         <li key="profileButton" className="nav-item">
-          <Link to="/profile" className="nav-link nav">
+          <Link  to="/profile" className="nav-link nav">
             Profile
           </Link>
         </li>

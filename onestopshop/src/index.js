@@ -9,7 +9,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux";
 
+// Styling
+import "./assets/css/main.css";
 
+// JS
+import "./assets/js/main.js";
 
 ReactDOM.render(
   <Provider store={store}>

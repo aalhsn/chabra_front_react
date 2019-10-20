@@ -21,9 +21,9 @@ class ProductDetail extends Component {
   handleClick = () => {
     const newItem = {
       id: this.props.product.id,
-      quantity: this.state.quantity,
-      name:this.state.name,
-      price:this.state.price
+      name: this.props.product.name,
+      price: this.props.product.price,
+      quantity: this.state.quantity
     };
     this.props.addItem(newItem);
   };
@@ -42,52 +42,55 @@ class ProductDetail extends Component {
       const product = this.props.product;
       return (
         <>
-          <div className="col-lg-4 col-md-6 col-12 mt-5">
-            <div className="image">
+          <section className="single-section"></section>
+          <div className="row">
+            <div className="col">
               <img
-                className="card-img-top img-fluid border"
+                className="detail-img"
                 src={product.img}
                 alt={product.name}
               />
             </div>
-            <div className="card-body border">
-              <h5 className="card-title">
-                <span>{product.name}</span>
-              </h5>
-              <p>
-                {product.description}{" "}
-                <span className="float-right">{product.price}KWD</span>
-              </p>
-              <small className="card-text">From farm to table!</small>
-              <br />
-              <div style={{ alignContent: "center" }}>
+            <div id="details" className="col">
+              <h3 className="product-name">{product.name}</h3>
+              <span className="product-price">{product.price} KWD</span>
+
+              <p className="product-desc">{product.description}</p>
+
+              <div className="add">
                 <button
                   onClick={() =>
                     this.state.quantity > 0 && this.changeQuantity(-1)
                   }
+                  id="add-btn"
                 >
                   -
                 </button>
-                <input
-                  type="text"
-                  value={this.state.quantity}
-                  style={{ textAlign: "center" }}
-                  readOnly={this.state.quantity}
-                />
-                <button onClick={() => this.changeQuantity(1)}>+</button>
-              </div>
-              <br />
-              <button onClick={() => this.handleClick()}>Add to cart</button>
-              <Link to="/cart">
-                <button className="btn btn-success">Shopping Basket</button>
-              </Link>
-              <Link to="/products">
+                <input id="add-quan" type="text" value={this.state.quantity} />
+                <button id="add-btn" onClick={() => this.changeQuantity(1)}>
+                  +
+                </button>
+
+                <br />
+                <button
+                  id="btn-cart"
+                  className="btn btn-success"
+                  onClick={() => this.handleClick()}
+                >
+                  Add to cart
+                </button>
+                <Link to="/cart">
+                  <button id="btn-basket" className="btn btn-danger">
+                    Shopping Basket
+                  </button>
+                </Link>
+                  <Link to="/home">
                     <button className="btn btn-block btn-light">
                       Continue Shopping
                     </button>
                   </Link>
+              </div>
             </div>
-           
           </div>
         </>
       );
@@ -105,7 +108,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchProductDetail: productID => dispatch(fetchProductDetail(productID)),
-    addItem: products => dispatch(addItem(products))
+    addItem: product => dispatch(addItem(product))
   };
 };
 
