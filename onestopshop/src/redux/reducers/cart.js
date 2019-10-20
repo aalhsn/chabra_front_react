@@ -1,45 +1,54 @@
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  CHECKOUT
+  CHECKOUT, 
+  FETCH_ORDERS
 } from "../actions/actionTypes";
 
 const initialState = {
-  items: [],
-  orders: []
+  products: [],
+  orders: [],
+  loading: true
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const newItem = action.payload;
-      let checkItem = state.items.find(item => item.name === newItem.name);
-      if (checkItem) {
-        checkItem.quantity += newItem.quantity;
-        console.log("Cart reducer item:", checkItem);
+      const newProduct = action.payload;
+      let checkProduct = state.products.find(product => product.id === newProduct.id);
+      if (checkProduct) {
+        checkProduct.quantity += newProduct.quantity;
         return {
           ...state,
-          items: [...state.items]
+          products: [...state.products]
         };
       } else {
         return {
           ...state,
-          items: state.items.concat(newItem)
+          products: state.products.concat(newProduct)
         };
       }
 
     case REMOVE_FROM_CART:
-      const removedItem = action.payload;
-      let updatedItems = state.items.filter(item => item !== removedItem);
+      const removedProduct = action.payload;
+      let updatedProducts = state.products.filter(product => product !== removedProduct);
       return {
         ...state,
-        items: updatedItems
+        products: updatedProducts,
+     
       };
 
     case CHECKOUT:
       return {
-        orders: state.orders.concat(action.payload),
-        items: []
+        ...state,
+        products: [],
+      };
+    case FETCH_ORDERS:
+      const orders = action.payload
+      return {
+        ...state,
+        orders: orders,
+        loading : false
       };
 
     default:

@@ -5,6 +5,7 @@ import * as actionCreators from "../redux/actions";
 import Loading from "./Loading";
 
 class Profile extends Component {
+
   componentDidMount() {
     this.props.fetchProfile();
   }
@@ -59,11 +60,14 @@ class Profile extends Component {
   }
 }
 
+
 const mapStateToProps = state => ({
   user: state.authReducer.user,
   profile: state.authReducer.profile,
   loading: state.profileReducer.loading
 });
+
+
 
 const mapDispatchToProps = dispatch => ({
   fetchProfile: () => dispatch(actionCreators.profile())
@@ -73,3 +77,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Profile);
+

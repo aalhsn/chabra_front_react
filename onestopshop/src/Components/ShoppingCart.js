@@ -6,13 +6,13 @@ import ShoppingCard from "./ShoppingCard";
 class ShoppingCart extends Component {
   totalPrice = () => {
     let total = 0;
-    this.props.items.forEach(item => {
+    this.props.products.forEach(item => {
       total = total + parseFloat(item.price) * parseFloat(item.quantity);
     });
     return total.toFixed(3);
   };
   render() {
-    const getOrderItem = this.props.items.map(item => (
+    const getOrderItem = this.props.products.map(item => (
       <ShoppingCard key={item.name} orderItem={item} />
     ));
 
@@ -87,7 +87,7 @@ class ShoppingCart extends Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.cartReducer.items
+    products: state.cartReducer.products
   };
 };
 

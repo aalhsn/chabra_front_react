@@ -1,5 +1,6 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, CHECKOUT } from "./actionTypes";
 // import axios from "axios";
+import instance from "./instance"
 
 export const addItem = item => ({
   type: ADD_TO_CART,
@@ -11,17 +12,18 @@ export const removeItem = item => ({
   payload: item
 });
 
-export const checkout = order => ({
-  type: CHECKOUT,
-  payload: order
-});
+// export const checkout = order => ({
+//   type: CHECKOUT,
+//   payload: order
+// });
 
-// export const checkout = order => async dispatch => {
-//   try {
-//     const res = await axios.post("http://127.0.0.1:8000/api/order/", order);
-//     const product = res.data;
-//     dispatch({ type: CHECKOUT, payload: product });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+export const checkout = products => async dispatch => {
+  try {
+    const res = await instance.post("items/", products);
+    dispatch({ type: CHECKOUT, payload: res.data});
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+

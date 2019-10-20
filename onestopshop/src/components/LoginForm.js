@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+
 //Actions
 import { login, resetErrors } from "../redux/actions";
 
@@ -11,9 +12,11 @@ class LoginForm extends Component {
     password: ""
   };
 
+
   componentWillUnmount() {
     if (this.props.errors.length) this.props.resetErrors();
   }
+
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -49,7 +52,6 @@ class LoginForm extends Component {
                 type="text"
                 placeholder="Username"
                 name="username"
-                id="input"
                 onChange={this.changeHandler}
               />
             </div>
@@ -59,7 +61,6 @@ class LoginForm extends Component {
                 type="password"
                 placeholder="Password"
                 name="password"
-                id="input"
                 onChange={this.changeHandler}
               />
             </div>
@@ -90,7 +91,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     login: (userData, history) => dispatch(login(userData, history)),
-    resetErrors: () => dispatch(resetErrors())
+    resetErrors: () => dispatch(resetErrors()),
   };
 };
 

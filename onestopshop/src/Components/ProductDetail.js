@@ -21,9 +21,9 @@ class ProductDetail extends Component {
   handleClick = () => {
     const newItem = {
       id: this.props.product.id,
-      name: this.props.product.name,
-      price: this.props.product.price,
-      quantity: this.state.quantity
+      quantity: this.state.quantity,
+      name:this.state.name,
+      price:this.state.price
     };
     this.props.addItem(newItem);
   };
@@ -81,7 +81,13 @@ class ProductDetail extends Component {
               <Link to="/cart">
                 <button className="btn btn-success">Shopping Basket</button>
               </Link>
+              <Link to="/products">
+                    <button className="btn btn-block btn-light">
+                      Continue Shopping
+                    </button>
+                  </Link>
             </div>
+           
           </div>
         </>
       );
@@ -99,7 +105,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchProductDetail: productID => dispatch(fetchProductDetail(productID)),
-    addItem: product => dispatch(addItem(product))
+    addItem: products => dispatch(addItem(products))
   };
 };
 
