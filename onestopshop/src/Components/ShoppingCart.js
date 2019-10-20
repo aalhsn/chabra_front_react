@@ -22,77 +22,7 @@ class ShoppingCart extends Component {
           <h1 id="my-cart">My Cart</h1>
         </section>
 
-        <div class="wrap cf">
-          <div class="heading cf">
-            <h1>My Cart</h1>
-            <Link to="/home">
-              <button className="btn btn-block btn-light">
-                Continue Shopping
-              </button>
-            </Link>
-          </div>
-          <div class="cart">
-            <ul class="cartWrap">
-              <li class="items even">
-                <div class="infoWrap">
-                  <div class="cartSection">
-                    <img
-                      src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
-                      alt=""
-                      class="itemImg"
-                    />
-                    <p class="itemNumber">#QUE-007544-002</p>
-                    <h3>Item Name 1</h3>
-
-                    <p>
-                      {" "}
-                      <input type="text" class="qty" placeholder="3" /> x $5.00
-                    </p>
-
-                    <p class="stockStatus"> In Stock</p>
-                  </div>
-
-                  <div class="prodTotal cartSection">
-                    <p>$15.00</p>
-                  </div>
-                  <div class="cartSection removeWrap">
-                    <a href="#" class="remove">
-                      x
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="subtotal cf">
-            <ul>
-              <li class="totalRow">
-                <span class="label">Subtotal</span>
-                <span class="value">$35.00</span>
-              </li>
-
-              <li class="totalRow">
-                <span class="label">Shipping</span>
-                <span class="value">$5.00</span>
-              </li>
-
-              <li class="totalRow">
-                <span class="label">Tax</span>
-                <span class="value">$4.00</span>
-              </li>
-              <li class="totalRow final">
-                <span class="label">Total</span>
-                <span class="value">$44.00</span>
-              </li>
-              <li class="totalRow">
-                <Link to="/checkout" params={{ total: this.totalPrice() }}>
-                  <button className="btn continue">Proceed to checkout</button>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
+        
 
         <div className="container-fluid mb-4">
           <div className="row">
@@ -128,6 +58,24 @@ class ShoppingCart extends Component {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+            <div className="col mb-2">
+              <div className="row">
+                <div className="col-sm-12  col-md-6">
+                  <Link to="/home">
+                    <button className="btn btn-block btn-light">
+                      Continue Shopping
+                    </button>
+                  </Link>
+                </div>
+                <div className="col-sm-12 col-md-6 text-right">
+                  <Link to="/checkout" params={{ total: this.totalPrice() }}>
+                    <button className="btn btn-lg btn-block btn-success text-uppercase">
+                      Proceed to checkout
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
