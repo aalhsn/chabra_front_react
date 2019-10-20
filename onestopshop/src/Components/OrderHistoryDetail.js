@@ -2,21 +2,29 @@ import React, { Component } from "react";
 import OrderHistoryDetailCard from "./OrderHistoryDetailCard";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Loading from "./Loading"
 
 class OrderHistoryDetail extends Component {
-  componentDidMount() {
-    const order = this.props.orders.filter(order => order.ref === this.props.match.params.orderID);
+
+  state = {
+    order: null
   }
 
+  componentDidMount(){
+    let order = this.props.orders.find(order => order.id === parseInt(this.props.match.params.orderID));
+    this.setState({order})
+  }
+  
   render() {
-
+    
+   
     if (!this.props.user) return <Redirect to="/" />;
 
-     const order = this.props.orders.filter(order => order.ref === this.props.match.params.orderID);
-  
-
-  
-    return (
+    if (!this.state.order) {
+      return <Loading />;
+    } else { 
+      const order = this.state.order
+      return (
       <>
         <section className="jumbotron text-center">
           <div className="container">
@@ -53,7 +61,7 @@ class OrderHistoryDetail extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                  <OrderHistoryDetailCard key={order.ref} order={order} />
+                  <OrderHistoryDetailCard key={order.id} order={order} />
                   </tbody>
                 </table>
               </div>
@@ -70,10 +78,13 @@ class OrderHistoryDetail extends Component {
     );
   }
 }
+}
 
 const mapStateToProps = state => {
   return {
-    orders: state.cartReducer.orders
+    orders: state.cartReducer.orders,
+    user: state.authReducer.user,
+    loading: state.cartReducer.loading
   };
 };
 

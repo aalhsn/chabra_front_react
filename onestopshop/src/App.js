@@ -12,7 +12,7 @@ import ProductDetail from "./Components/ProductDetail";
 import NavBar from "./Components/Navigation/NavBar";
 import ShoppingCart from "./Components/ShoppingCart";
 import Checkout from "./Components/Checkout";
-import OrderDetail from "./Components/OrderHistoryDetail";
+import OrderHistoryDetail from "./Components/OrderHistoryDetail";
 import OrderList from "./Components/OrderHistory";
 
 function App({ loading }) {
@@ -20,6 +20,7 @@ function App({ loading }) {
     if (loading) return <Loading />;
     return (
       <Switch>
+        <Route exact path="/order-details/:orderID" component={OrderHistoryDetail} />
         <Route exact path="/products/:productID" component={ProductDetail} />
         <Route path="/cart/" component={ShoppingCart} />
         <Route path="/products/" component={ProductsList} />
@@ -27,7 +28,6 @@ function App({ loading }) {
         <Route path="/signup" component={RegistrationForm} />
         <Route path="/profile" component={Profile} />
         <Route path="/checkout" component={Checkout} />
-        <Route exact path="/order-details/:orderID" component={OrderDetail} />
         <Route  path="/order-history/" component={OrderList} />
         <Redirect exact from="/" to="/products" />
       </Switch>

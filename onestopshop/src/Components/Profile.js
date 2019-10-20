@@ -3,6 +3,12 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
 class Profile extends Component {
+
+  
+  
+ 
+  
+  
   render() {
     if (!this.props.user) return <Redirect to="/" />;
     return (
@@ -21,9 +27,14 @@ class Profile extends Component {
   }
 }
 
+
 const mapStateToProps = state => ({
   user: state.authReducer.user,
-  profile: state.authReducer.profile
+  profile: state.authReducer.profile,
 });
 
+
+
+
 export default connect(mapStateToProps)(Profile);
+

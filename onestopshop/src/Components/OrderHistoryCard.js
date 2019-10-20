@@ -9,10 +9,10 @@ class OrderHistoryCard extends Component {
   render() {
     return (
       <tr>
-        <td>{this.props.order.ref}</td>
-        <td>{this.props.order.date}</td>
+        <td>{this.props.order.order_ref}</td>
+        <td>{this.props.order.date_time}</td>
         <td className="text-right">
-        <Link to={`/order-details/${this.props.order.ref}/`}>
+        <Link to={`/order-details/${this.props.order.id}/`}>
             <button className="btn btn-lg btn-block btn-success">
               <FontAwesomeIcon icon={faList} />
             </button>

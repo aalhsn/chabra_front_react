@@ -7,6 +7,7 @@ export const profile = () => async dispatch => {
   try {
     const res = await instance.get("profile/");
     const profile = res.data;
+    dispatch(fetchOrders())
     dispatch({ type: actionTypes.SET_PROFILE, payload: profile });
   } catch (error) {
     console.error(error);
@@ -93,4 +94,16 @@ export const signup = (userData, history) => {
 export const logout = () => {
   setAuthToken();
   return setCurrentUser();
+};
+
+
+
+export const fetchOrders = () => async dispatch => {
+  try {
+    const res = await instance.get("items/");
+    const orders = res.data;
+    dispatch({ type: actionTypes.FETCH_ORDERS, payload: orders });
+  } catch (error) {
+    console.error(error);
+  }
 };

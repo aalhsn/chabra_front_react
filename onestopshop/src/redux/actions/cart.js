@@ -17,12 +17,13 @@ export const removeItem = item => ({
 //   payload: order
 // });
 
-export const checkout = order_items => async dispatch => {
+export const checkout = products => async dispatch => {
   try {
-    const res = await instance.post("items/", order_items);
-    console.log("response:", res)
+    const res = await instance.post("items/", products);
     dispatch({ type: CHECKOUT, payload: res.data});
   } catch (error) {
     console.error(error);
   }
 };
+
+

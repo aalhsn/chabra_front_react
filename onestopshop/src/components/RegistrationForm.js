@@ -59,7 +59,6 @@ class RegistationForm extends Component {
                 type="text"
                 placeholder="Username"
                 name="username"
-                id="input"
                 onChange={this.changeHandler}
               />
             </div>
@@ -69,7 +68,6 @@ class RegistationForm extends Component {
                 type="password"
                 placeholder="Password"
                 name="password"
-                id="input"
                 onChange={this.changeHandler}
               />
             </div>

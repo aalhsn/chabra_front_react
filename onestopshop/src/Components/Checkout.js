@@ -14,7 +14,7 @@ class Checkout extends Component {
 
   totalPrice = () => {
     let total = 0;
-    this.props.items.forEach(item => {
+    this.props.products.forEach(item => {
       total = total + parseFloat(item.price) * parseInt(item.quantity);
     });
     return total.toFixed(3);
@@ -24,28 +24,17 @@ class Checkout extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  OrderNumber = () => {
-    let total = Math.random()
-      .toString(36)
-      .toUpperCase();
-    return total.substr(3, 5);
-  };
 
   handleClick = () => {
-    const newOrder = this.props.items
-      // id: "need it from backend",
-      // ref: "CH" + this.OrderNumber(),
-      // items: this.props.items,
-      // total_order_price: this.totalPrice(),
-      // address: this.state.address,
-      // date: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
-      // customer: this.props.user
-    
-    this.props.checkout(newOrder);
+    let newOrders = {
+      baskets:this.props.products,
+      address : this.state.address
+    }
+    this.props.checkout(newOrders);
   };
   render() {
     if (!this.props.user) return <Redirect to="/login" />;
-    const getOrderItems = this.props.items.map(item => (
+    const getOrderItems = this.props.products.map(item => (
       <ShoppingCard key={item.name} orderItem={item} />
     ));
 
@@ -124,14 +113,14 @@ class Checkout extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    checkout: order => dispatch(checkout(order))
+    checkout: products => dispatch(checkout(products))
   };
 };
 
 const mapStateToProps = state => {
   return {
     orders: state.cartReducer.orders,
-    items: state.cartReducer.items,
+    products: state.cartReducer.products,
     user: state.authReducer.user
   };
 };
