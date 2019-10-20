@@ -84,6 +84,11 @@ class ProductDetail extends Component {
                     Shopping Basket
                   </button>
                 </Link>
+                  <Link to="/home">
+                    <button className="btn btn-block btn-light">
+                      Continue Shopping
+                    </button>
+                  </Link>
               </div>
             </div>
           </div>

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import OrderHistoryCard from "./OrderHistoryCard";
+
 
 class OrderHistory extends Component {
   //   totalPrice = () => {
@@ -11,9 +12,12 @@ class OrderHistory extends Component {
   //     });
   //     return total;
   //   };
+
+  
   render() {
+    if (!this.props.user) return <Redirect to="/" />;
     const getOrderList = this.props.orders.map(order => (
-      <OrderHistoryCard key={order.ref} order={order} />
+      <OrderHistoryCard key={order.id} order={order} />
     ));
 
     return (
@@ -68,10 +72,11 @@ class OrderHistory extends Component {
   }
 }
 
+
 const mapStateToProps = state => {
   return {
     orders: state.cartReducer.orders,
-    items: state.cartReducer.items,
+    products: state.cartReducer.products,
     user: state.authReducer.user
   };
 };

@@ -6,4 +6,5 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CHECKOUT = "CHECKOUT";
 export const SET_PROFILE = "SET_PROFILE";
+export const FETCH_ORDERS = "FETCH_ORDERS";
 export const SET_PROFILE_LOADING = "SET_PROFILE_LOADING";
