@@ -22,8 +22,9 @@ class ProductDetail extends Component {
     const newItem = {
       id: this.props.product.id,
       quantity: this.state.quantity,
-      name:this.state.name,
-      price:this.state.price
+      name: this.props.product.name,
+      price: this.props.product.price,
+      img: this.props.product.img
     };
     this.props.addItem(newItem);
   };
@@ -82,12 +83,11 @@ class ProductDetail extends Component {
                 <button className="btn btn-success">Shopping Basket</button>
               </Link>
               <Link to="/products">
-                    <button className="btn btn-block btn-light">
-                      Continue Shopping
-                    </button>
-                  </Link>
+                <button className="btn btn-block btn-light">
+                  Continue Shopping
+                </button>
+              </Link>
             </div>
-           
           </div>
         </>
       );
