@@ -22,15 +22,13 @@ class ShoppingCart extends Component {
           <h1 id="my-cart">My Cart</h1>
         </section>
 
-        
-
-        <div className="container-fluid mb-4">
-          <div className="row">
-            <div className="col-12">
-              <div className="table-responsive">
+        <div id="table" className="container-fluid mb-4">
+          <div>
+            <div>
+              <div>
                 <table className="table table-striped">
-                  <thead>
-                    <tr>
+                  <thead id="name-row">
+                    <tr id="space-row">
                       <th scope="col"> </th>
                       <th scope="col">Product</th>
                       <th scope="col" className="text-center">
@@ -49,11 +47,16 @@ class ShoppingCart extends Component {
                       <td></td>
                       <td></td>
                       <td></td>
-                      <td>
-                        <strong>Total</strong>
-                      </td>
-                      <td className="text-right">
-                        <strong>{this.totalPrice()} KWD</strong>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table>
+                  <tbody>
+                    <tr>
+                      <td id="total">
+                        <strong id="total-text">Total</strong>
+                        <strong id="total-price">{this.totalPrice()} KWD</strong>
                       </td>
                     </tr>
                   </tbody>

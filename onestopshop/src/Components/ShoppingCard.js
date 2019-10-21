@@ -9,6 +9,7 @@ class ShoppingCard extends Component {
   handleClick = () => {
     this.props.removeItem(this.props.orderItem);
   };
+  
   render() {
     return (
       <tr>
@@ -20,7 +21,7 @@ class ShoppingCard extends Component {
           />
         </td>
         <td>{this.props.orderItem.name}</td>
-        <td>{this.props.orderItem.quantity}</td>
+        <td id="quan-number">{this.props.orderItem.quantity}</td>
         <td className="text-right">{this.props.orderItem.price}</td>
         <td className="text-right">
           <button

@@ -1,7 +1,7 @@
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  CHECKOUT, 
+  CHECKOUT,
   FETCH_ORDERS
 } from "../actions/actionTypes";
 
@@ -15,7 +15,9 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       const newProduct = action.payload;
-      let checkProduct = state.products.find(product => product.id === newProduct.id);
+      let checkProduct = state.products.find(
+        product => product.id === newProduct.id
+      );
       if (checkProduct) {
         checkProduct.quantity += newProduct.quantity;
         return {
@@ -31,24 +33,25 @@ const reducer = (state = initialState, action) => {
 
     case REMOVE_FROM_CART:
       const removedProduct = action.payload;
-      let updatedProducts = state.products.filter(product => product !== removedProduct);
+      let updatedProducts = state.products.filter(
+        product => product !== removedProduct
+      );
       return {
         ...state,
-        products: updatedProducts,
-     
+        products: updatedProducts
       };
 
     case CHECKOUT:
       return {
-        ...state,
         products: [],
+        orders: state.orders.concat(action.payload)
       };
     case FETCH_ORDERS:
-      const orders = action.payload
+      const orders = action.payload;
       return {
         ...state,
         orders: orders,
-        loading : false
+        loading: false
       };
 
     default:

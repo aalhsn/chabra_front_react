@@ -23,7 +23,8 @@ class ProductDetail extends Component {
       id: this.props.product.id,
       name: this.props.product.name,
       price: this.props.product.price,
-      quantity: this.state.quantity
+      quantity: this.state.quantity,
+      img: this.state.img
     };
     this.props.addItem(newItem);
   };
@@ -84,11 +85,11 @@ class ProductDetail extends Component {
                     Shopping Basket
                   </button>
                 </Link>
-                  <Link to="/home">
-                    <button id="btn-cont" className="btn btn-info">
-                      Continue Shopping
-                    </button>
-                  </Link>
+                <Link to="/home">
+                  <button id="btn-cont" className="btn btn-info">
+                    Continue Shopping
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
