@@ -6,7 +6,6 @@ import Loading from "./Loading";
 import Logout from "./Logout";
 
 class Profile extends Component {
-
   componentDidMount() {
     this.props.fetchProfile();
   }
@@ -25,27 +24,28 @@ class Profile extends Component {
     if (!user) return <Redirect to="/" />;
 
     if (user) {
-      if (!loading) {
+      if (loading) {
         return <Loading />;
       } else {
-        console.log("hi", profile.user);
+        console.log("Profile: ", profile);
+        console.log("Profile user =>", profile.user);
         return (
           <div className="card col-6 mx-auto p-0" style={{ marginTop: "10%" }}>
             <img
-              src={`http://chabra.herokuapp.com${profile.image}`}
+              src={`http://134.209.242.76${profile.image}`}
               height="42"
               width="42"
             ></img>
-            <p> Username: </p>
-            <p> First Name: </p>
-            <p> Last Name: </p>
+            <p> Username: {profile.user.username} </p>
+            <p> First Name: {profile.user.first_name}</p>
+            <p> Last Name: {profile.user.last_name}</p>
             <p> Age: {profile.age} </p>
             <p> Gender: {this.genderString(profile.gender)} </p>
             <p> Phone: {profile.phone} </p>
             <Link to="/order-history">
               <button className="btn btn-block btn-info">Order History</button>
             </Link>
-            <br/>
+            <br />
             <Logout />
           </div>
         );
@@ -54,14 +54,11 @@ class Profile extends Component {
   }
 }
 
-
 const mapStateToProps = state => ({
   user: state.authReducer.user,
   profile: state.authReducer.profile,
-  loading: state.profileReducer.loading
+  loading: state.authReducer.loading
 });
-
-
 
 const mapDispatchToProps = dispatch => ({
   fetchProfile: () => dispatch(actionCreators.profile())
@@ -71,4 +68,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Profile);
-
