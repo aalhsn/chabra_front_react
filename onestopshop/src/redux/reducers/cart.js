@@ -40,7 +40,7 @@ const reducer = (state = initialState, action) => {
 
     case CHECKOUT:
       return {
-        ...state,
+        orders: state.orders.concat(action.payload),
         products: [],
       };
     case FETCH_ORDERS:

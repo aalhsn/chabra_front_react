@@ -23,7 +23,8 @@ class ProductDetail extends Component {
       id: this.props.product.id,
       name: this.props.product.name,
       price: this.props.product.price,
-      quantity: this.state.quantity
+      quantity: this.state.quantity,
+      img: this.props.product.img
     };
     this.props.addItem(newItem);
   };
