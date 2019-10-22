@@ -96,7 +96,7 @@ export const checkForExpiredToken = () => {
 
 export const fetchOrders = () => async dispatch => {
   try {
-    const res = await instance.get("items/");
+    const res = await instance.get("orders/");
     const orders = res.data;
     dispatch({ type: actionTypes.FETCH_ORDERS, payload: orders });
   } catch (error) {

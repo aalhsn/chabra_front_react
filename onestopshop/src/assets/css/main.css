@@ -256,6 +256,15 @@ body {
   border: 1px solid gray;
 }
 
+#add-quan1 {
+  text-align: center;
+  background-color: transparent;
+  padding: 5px;
+  width: 80px;
+  margin: 10px;
+  border: 1px solid gray;
+}
+
 .card {
   margin: 20px;
 }
