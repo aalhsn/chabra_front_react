@@ -7,4 +7,6 @@ export const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CHECKOUT = "CHECKOUT";
 export const SET_PROFILE = "SET_PROFILE";
-export const SET_PROFILE_LOADING = "SET_PROFILE_LOADING";
+export const EDIT_PROFILE = "EDIT_PROFILE";
+export const RESET_PROFILE = "RESET_PROFILE";
+

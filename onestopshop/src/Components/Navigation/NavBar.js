@@ -32,7 +32,6 @@ const NavBar = () => {
       >
         <span className="navbar-toggler-icon" />
       </button>
-
       <AuthButton />
     </nav>
   );
