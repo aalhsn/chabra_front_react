@@ -68,7 +68,7 @@ class ProductDetail extends Component {
       id: this.props.product.id,
       name: this.props.product.name,
       price: this.props.product.price,
-      quantity: this.props.quantity,
+      quantity: this.state.quantity,
       img: this.props.product.img
     };
     this.props.addItem(newItem);
@@ -85,17 +85,17 @@ class ProductDetail extends Component {
         let quantityInCart = this.props.products.find(
           product => product.id === this.props.product.id
         ).quantity;
-        if (
-          quantityInCart + number + this.state.quantity >
-          this.props.product.stock
-        ) {
-          alert("Exceeded stock!");
-        } else {
-          const newQuantity = this.state.quantity + number;
-          this.setState({ quantity: newQuantity });
-        }
-      } else if (number + this.state.quantity > this.props.product.stock) {
-        alert("Exceeded stock!");
+          if (
+            quantityInCart + number + this.state.quantity >
+            this.props.product.stock
+          ) {
+            return alert("Exceeded stock!");
+          } else {
+            const newQuantity = this.state.quantity + number;
+            this.setState({ quantity: newQuantity });
+          }
+        } else if (number + this.state.quantity > this.props.product.stock) {
+          return alert("Exceeded stock!");
       }
       const newQuantity = this.state.quantity + number;
       this.setState({ quantity: newQuantity });

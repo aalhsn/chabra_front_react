@@ -9,6 +9,40 @@ class ProductCard extends Component {
     quantity: 0
   };
 
+  ShowCounter = () => {
+    if (this.props.product.stock !== 0) {
+      return (
+        <>
+          <button
+            onClick={() => this.state.quantity > 0 && this.changeQuantity(-1)}
+            id="add-btn"
+          >
+            -
+          </button>
+          <input id="add-quan1" type="text" value={this.state.quantity} />
+          <button id="add-btn" onClick={() => this.changeQuantity(1)}>
+            +
+          </button>
+          <br />
+          <button
+            id="btn-cart"
+            className="btn btn-success mt-2"
+            onClick={() => this.state.quantity !== 0 && this.handleClick()}
+          >Add to cart </button>
+          {this.limited()}
+        </>
+      );
+    } else {
+      return( 
+      <>
+     <button
+            
+            className="btn btn-secondary mt-2 rounded-pill"  disabled>Out of Stock</button>
+      </>
+      )
+    }
+  };
+
   handleClick = () => {
     const newItem = {
       id: this.props.product.id,
@@ -33,26 +67,26 @@ class ProductCard extends Component {
   };
 
   changeQuantity = number => {
+    
     if (this.state.quantity >= 0) {
       if (
-        this.props.productss.find(
+        this.props.products.find(
           product => product.id === this.props.product.id
         )
       ) {
-        let quantityInCart = this.props.productss.find(
-          product => product.id === this.props.product.id
-        ).quantity;
-        if (
-          quantityInCart + number + this.state.quantity >
-          this.props.product.stock
-        ) {
-          alert("Exceeded stock!");
-        } else {
-          const newQuantity = this.state.quantity + number;
-          this.setState({ quantity: newQuantity });
-        }
+        let quantityInCart = this.props.products.find(product => product.id === this.props.product.id).quantity
+        
+          if (
+            quantityInCart + number + this.state.quantity >
+            this.props.product.stock
+          ) {
+            return alert("Exceeded stock!");
+          } else {
+            const newQuantity = this.state.quantity + number;
+            this.setState({ quantity: newQuantity });
+          }
       } else if (number + this.state.quantity > this.props.product.stock) {
-        alert("Exceeded stock!");
+        return alert("Exceeded stock!");
       }
       const newQuantity = this.state.quantity + number;
       this.setState({ quantity: newQuantity });
@@ -78,28 +112,9 @@ class ProductCard extends Component {
             <span>{product.name}</span>
           </h5>
           <p className="card-text">{product.price} KWD</p>
-          <button
-            onClick={() => this.state.quantity > 0 && this.changeQuantity(-1)}
-            id="add-btn"
-          >
-            -
-          </button>
-          <input id="add-quan1" type="text" value={this.state.quantity} />
-          <button id="add-btn" onClick={() => this.changeQuantity(1)}>
-            +
-          </button>
-
-          <br />
-          <button
-            id="btn-cart"
-            className={`btn btn-${
-              this.props.product.stock === 0 ? "secondary mt-2" : "success mt-2"
-            }`}
-            onClick={() => this.state.quantity !== 0 && this.handleClick()}
-          >
-            {this.props.product.stock === 0 ? "Out of Stock" : "Add to cart"}
-          </button>
-          {this.limited()}
+          {this.ShowCounter()}
+         
+         
         </div>
       </div>
     );
@@ -107,8 +122,9 @@ class ProductCard extends Component {
 }
 
 const mapStateToProps = state => {
+  
   return {
-    productss: state.cartReducer.products
+    products: state.cartReducer.products
   };
 };
 
