@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { checkout } from "../redux/actions";
+import { checkout, fetchProductDetail, fetchProducts } from "../redux/actions";
 import ShoppingCard from "./ShoppingCard";
-import moment from "moment";
 
 class Checkout extends Component {
   state = {
@@ -24,12 +23,16 @@ class Checkout extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleClick = () => {
+  handleClick = async () => {
     let newOrders = {
       baskets: this.props.products,
       address: this.state.address
     };
-    this.props.checkout(newOrders);
+    await this.props.checkout(newOrders);
+    this.props.fetchProducts();
+    this.props.products.forEach(product =>
+      this.props.fetchProductDetail(product.id)
+    );
   };
 
   render() {
@@ -113,7 +116,9 @@ class Checkout extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    checkout: products => dispatch(checkout(products))
+    checkout: products => dispatch(checkout(products)),
+    fetchProductDetail: productID => dispatch(fetchProductDetail(productID)),
+    fetchProducts: () => dispatch(fetchProducts())
   };
 };
 
@@ -121,6 +126,7 @@ const mapStateToProps = state => {
   return {
     orders: state.cartReducer.orders,
     products: state.cartReducer.products,
+    orignals: state.rootProducts.products,
     user: state.authReducer.user
   };
 };

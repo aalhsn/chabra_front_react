@@ -6,7 +6,6 @@ import Loading from "./Loading";
 import Logout from "./Logout";
 
 class Profile extends Component {
-
   componentDidMount() {
     this.props.fetchProfile();
   }
@@ -33,6 +32,7 @@ class Profile extends Component {
           <div className="card col-6 mx-auto p-0" style={{ marginTop: "10%" }}>
             <img
               src={`http://chabra.herokuapp.com${profile.image}`}
+              alt=""
               height="42"
               width="42"
             ></img>
@@ -45,7 +45,7 @@ class Profile extends Component {
             <Link to="/order-history">
               <button className="btn btn-block btn-info">Order History</button>
             </Link>
-            <br/>
+            <br />
             <Logout />
           </div>
         );
@@ -54,14 +54,11 @@ class Profile extends Component {
   }
 }
 
-
 const mapStateToProps = state => ({
   user: state.authReducer.user,
   profile: state.authReducer.profile,
   loading: state.profileReducer.loading
 });
-
-
 
 const mapDispatchToProps = dispatch => ({
   fetchProfile: () => dispatch(actionCreators.profile())
@@ -71,4 +68,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Profile);
-

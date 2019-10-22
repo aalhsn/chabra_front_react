@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 // Components
 import ProductCard from "./ProductCard";
 import SearchBar from "./SearchBar";
+import { fetchProducts } from "../redux/actions";
 
 class ProductsList extends Component {
   state = {
@@ -35,10 +36,19 @@ class ProductsList extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProducts: () => dispatch(fetchProducts())
+  };
+};
+
 const mapStateToProps = state => {
   return {
     products: state.rootProducts.products
   };
 };
 
-export default connect(mapStateToProps)(ProductsList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductsList);
