@@ -14,8 +14,11 @@ class ProductDetail extends Component {
     quantity: 1
   };
 
-  componentDidMount() {
-    this.props.fetchProductDetail(this.props.match.params.productID);
+  async componentDidMount() {
+    const productID = this.props.match.params.productID;
+    if (!this.props.product) {
+      await this.props.fetchProductDetail(productID);
+    }
   }
 
   handleClick = () => {
@@ -37,7 +40,7 @@ class ProductDetail extends Component {
   };
 
   render() {
-    if (this.props.loading) {
+    if (!this.props.product) {
       return <Loading />;
     } else {
       const product = this.props.product;
@@ -85,11 +88,11 @@ class ProductDetail extends Component {
                     Shopping Basket
                   </button>
                 </Link>
-                  <Link to="/home">
-                    <button id="btn-cont" className="btn btn-info">
-                      Continue Shopping
-                    </button>
-                  </Link>
+                <Link to="/home">
+                  <button id="btn-cont" className="btn btn-info">
+                    Continue Shopping
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -99,10 +102,10 @@ class ProductDetail extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const productID = ownProps.match.params.productID;
   return {
-    product: state.rootProduct.product,
-    loading: state.rootProduct.loading
+    product: state.rootProduct.cache[productID]
   };
 };
 

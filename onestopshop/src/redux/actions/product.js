@@ -1,7 +1,6 @@
 import { FETCH_PRODUCT_DETAIL } from "./actionTypes";
 import instance from "./instance";
 
-
 export const fetchProductDetail = productID => async dispatch => {
   try {
     const res = await instance.get(`products/${productID}/`);

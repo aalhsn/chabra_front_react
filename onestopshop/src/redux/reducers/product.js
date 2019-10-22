@@ -1,7 +1,7 @@
 import { FETCH_PRODUCT_DETAIL } from "../actions/actionTypes";
 
 const initialState = {
-  product: null,
+  cache: [],
   loading: true
 };
 
@@ -9,9 +9,11 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCT_DETAIL:
       const product = action.payload;
+      const cache = state.cache;
+      cache[product.id] = product;
       return {
         ...state,
-        product: product,
+        cache: cache,
         loading: false
       };
 
