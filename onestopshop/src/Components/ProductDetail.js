@@ -11,7 +11,7 @@ import { fetchProductDetail, addItem } from "../redux/actions";
 
 class ProductDetail extends Component {
   state = {
-    quantity: 1
+    quantity: 0
   };
 
   async componentDidMount() {
@@ -21,50 +21,47 @@ class ProductDetail extends Component {
     }
   }
 
-  checkStock = () =>{
-    if (this.props.product.stock !== 0){
-      return ( 
-      <>
-      <button
-        onClick={() =>
-          this.state.quantity > 0 && this.changeQuantity(-1)
-        }
-        id="add-btn"
-      >
-        -
-      </button>
-      <input id="add-quan" type="text" value={this.state.quantity} />
-      <button id="add-btn" onClick={() => this.changeQuantity(1)}>
-        +
-      </button>
+  checkStock = () => {
+    if (this.props.product.stock !== 0) {
+      return (
+        <>
+          <button
+            onClick={() => this.state.quantity > 0 && this.changeQuantity(-1)}
+            id="add-btn"
+          >
+            -
+          </button>
+          <input id="add-quan" type="text" value={this.state.quantity} />
+          <button id="add-btn" onClick={() => this.changeQuantity(1)}>
+            +
+          </button>
 
-      <br />
-      <button
-        id="btn-cart"
-        className="btn btn-success"
-        onClick={() => this.handleClick()}
-      >
-        Add to cart
-      </button>
-      </>
-      )
-    
-
+          <br />
+          <button
+            id="btn-cart"
+            className="btn btn-success"
+            onClick={() => this.state.quantity !== 0 && this.handleClick()}
+          >
+            Add to cart
+          </button>
+        </>
+      );
     } else {
-      return <h3 className="text-muted ml-4">Out of Stock</h3>
+      return <h3 className="text-muted ml-4">Out of Stock</h3>;
     }
-    }
+  };
 
-  limited=()=>{
-    if(this.props.product.stock < 10 && this.props.product.stock > 0){
-      return(
-      <>
-      <h4 className="text-danger">{this.props.product.stock} items left!</h4>
-      </>
-      )
+  limited = () => {
+    if (this.props.product.stock < 10 && this.props.product.stock > 0) {
+      return (
+        <>
+          <h4 className="text-danger">
+            {this.props.product.stock} items left!
+          </h4>
+        </>
+      );
     }
-  }
-  
+  };
 
   handleClick = () => {
     const newItem = {
@@ -75,18 +72,35 @@ class ProductDetail extends Component {
       img: this.props.product.img
     };
     this.props.addItem(newItem);
+    this.setState({ quantity: 0 });
   };
 
   changeQuantity = number => {
     if (this.state.quantity >= 0) {
-      if (this.props.product.stock < number+this.state.quantity){
-      alert("Exceeded stock!")
-      }else {
+      if (
+        this.props.products.find(
+          product => product.id === this.props.product.id
+        )
+      ) {
+        let quantityInCart = this.props.products.find(
+          product => product.id === this.props.product.id
+        ).quantity;
+          if (
+            quantityInCart + number + this.state.quantity >
+            this.props.product.stock
+          ) {
+            return alert("Exceeded stock!");
+          } else {
+            const newQuantity = this.state.quantity + number;
+            this.setState({ quantity: newQuantity });
+          }
+        } else if (number + this.state.quantity > this.props.product.stock) {
+          return alert("Exceeded stock!");
+      }
       const newQuantity = this.state.quantity + number;
       this.setState({ quantity: newQuantity });
     }
-  }
-  }
+  };
 
   render() {
     if (!this.props.product) {
@@ -111,7 +125,7 @@ class ProductDetail extends Component {
               <p className="product-desc">{product.description}</p>
 
               <div className="add">
-              {this.checkStock()}
+                {this.checkStock()}
                 <Link to="/cart">
                   <button id="btn-basket" className="btn btn-danger">
                     Shopping Basket
@@ -129,13 +143,13 @@ class ProductDetail extends Component {
       );
     }
   }
-  }
-
+}
 
 const mapStateToProps = (state, ownProps) => {
   const productID = ownProps.match.params.productID;
   return {
-    product: state.rootProduct.cache[productID]
+    product: state.rootProduct.cache[productID],
+    products: state.cartReducer.products
   };
 };
 
