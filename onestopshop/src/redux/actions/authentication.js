@@ -1,5 +1,4 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { setErrors, resetErrors } from "./errors";
 import instance from "./instance";
@@ -8,28 +7,58 @@ export const profile = () => async dispatch => {
   try {
     const res = await instance.get("profile/");
     const profile = res.data;
-    dispatch(fetchOrders())
+    dispatch(fetchOrders());
     dispatch({ type: actionTypes.SET_PROFILE, payload: profile });
   } catch (error) {
     console.error(error);
   }
 };
 
-const setCurrentUser = token => {
-  let user;
-  if (token) {
-    localStorage.setItem("token", token);
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-    user = jwt_decode(token);
-  } else {
-    localStorage.removeItem("token");
-    delete instance.defaults.headers.common.Authorization;
-    user = null;
-  }
+export const editProfile = (userData, history) => {
+  return async dispatch => {
+    try {
+      let newUserDate = {
+        user: {
+          username: "",
+          first_name: userData.first_name,
+          last_name: userData.last_name,
+          email: userData.email
+        },
+        phone: userData.phone,
+        gender: userData.gender,
+        age: userData.age,
+        image: userData.image
+      };
 
-  return {
-    type: actionTypes.SET_CURRENT_USER,
-    payload: user
+      const res = await instance.put("profile/", newUserDate);
+      dispatch({ type: actionTypes.EDIT_PROFILE, payload: res.data });
+      dispatch(resetErrors());
+      history.replace("profile/");
+    } catch (error) {
+      console.error(error);
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: error.response.data
+      });
+    }
+  };
+};
+
+const setCurrentUser = token => {
+  return async dispatch => {
+    let user;
+    if (token) {
+      localStorage.setItem("token", token);
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+      user = jwt_decode(token);
+      dispatch(profile());
+    } else {
+      localStorage.removeItem("token");
+      delete instance.defaults.headers.common.Authorization;
+      user = null;
+    }
+
+    return dispatch({ type: actionTypes.SET_CURRENT_USER, payload: user });
   };
 };
 
@@ -40,7 +69,6 @@ export const login = (userData, history) => {
       const user = response.data;
       dispatch(setCurrentUser(user.access));
       dispatch(resetErrors());
-
       history.replace("/");
     } catch (error) {
       console.log(error);
@@ -52,17 +80,17 @@ export const login = (userData, history) => {
   };
 };
 
+export const resetProfile = () => ({
+  type: actionTypes.RESET_PROFILE
+});
+
 export const signup = (userData, history) => {
   return async dispatch => {
     try {
       const res = await instance.post("register/", userData);
       const user = res.data;
-
       dispatch(setCurrentUser(user.access));
-
       dispatch(login(userData, history));
-      dispatch(resetErrors());
-
       history.replace("/");
     } catch (error) {
       console.error(error.response.data);
@@ -71,7 +99,12 @@ export const signup = (userData, history) => {
   };
 };
 
-export const logout = () => setCurrentUser();
+export const logout = () => {
+  return async dispatch => {
+    dispatch(setCurrentUser());
+    dispatch(resetProfile());
+  };
+};
 
 export const checkForExpiredToken = () => {
   // Check for token expiration
@@ -91,8 +124,6 @@ export const checkForExpiredToken = () => {
   }
   return logout();
 };
-
-
 
 export const fetchOrders = () => async dispatch => {
   try {

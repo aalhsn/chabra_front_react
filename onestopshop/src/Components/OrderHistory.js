@@ -3,7 +3,6 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import OrderHistoryCard from "./OrderHistoryCard";
 
-
 class OrderHistory extends Component {
   //   totalPrice = () => {
   //     let total = 0;
@@ -13,7 +12,6 @@ class OrderHistory extends Component {
   //     return total;
   //   };
 
-  
   render() {
     if (!this.props.user) return <Redirect to="/" />;
     const getOrderList = this.props.orders.map(order => (
@@ -56,7 +54,7 @@ class OrderHistory extends Component {
             <div className="col mb-2">
               <div className="row">
                 <div className="col-sm-12  col-md-6">
-                  <Link to="/products">
+                  <Link to="/home">
                     <button className="btn btn-block btn-light">
                       Continue Shopping
                     </button>
@@ -71,7 +69,6 @@ class OrderHistory extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => {
   return {

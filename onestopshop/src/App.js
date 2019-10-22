@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import LoginForm from "./Components/LoginForm";
 import RegistrationForm from "./Components/RegistrationForm";
 import Profile from "./Components/Profile";
+import EditProfile from "./Components/EditProfile";
 import Loading from "./Components/Loading";
 import ProductDetail from "./Components/ProductDetail";
 import NavBar from "./Components/Navigation/NavBar";
@@ -30,9 +31,9 @@ function App({ loading }) {
         <Route path="/login" component={LoginForm} />
         <Route path="/signup" component={RegistrationForm} />
         <Route path="/profile" component={Profile} />
+        <Route path="/edit-profile" component={EditProfile} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/home" component={Home} />
-
         <Route path="/order-history/" component={OrderList} />
         <Redirect exact from="/" to="/home" />
       </Switch>
