@@ -1,6 +1,11 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CHECKOUT } from "./actionTypes";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CHECKOUT,
+  CHANGE_QUANTITY
+} from "./actionTypes";
 // import axios from "axios";
-import instance from "./instance"
+import instance from "./instance";
 
 export const addItem = item => ({
   type: ADD_TO_CART,
@@ -20,10 +25,13 @@ export const removeItem = item => ({
 export const checkout = products => async dispatch => {
   try {
     const res = await instance.post("orders/", products);
-    dispatch({ type: CHECKOUT, payload: res.data});
+    dispatch({ type: CHECKOUT, payload: res.data });
   } catch (error) {
     console.error(error);
   }
 };
 
-
+export const changeQuantity = quantity => ({
+  type: CHANGE_QUANTITY,
+  payload: quantity
+});
