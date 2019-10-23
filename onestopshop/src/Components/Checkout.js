@@ -7,7 +7,12 @@ import ShoppingCard from "./ShoppingCard";
 
 class Checkout extends Component {
   state = {
-    address: "",
+
+    area: "",
+    street: "",
+    block: 0,
+    optional: "",
+
     total: 0
   };
 
@@ -19,15 +24,24 @@ class Checkout extends Component {
     return total.toFixed(3);
   };
 
-  changeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value });
+
+  changeHandler = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
+
 
   handleClick = async () => {
     let newOrders = {
       baskets: this.props.products,
-      address: this.state.address
+      address: {
+        area: this.state.area,
+        street: this.state.street,
+        block: this.state.block,
+        optional: this.state.optional,
+      }
+
     };
+    console.log(newOrders)
     await this.props.checkout(newOrders);
     this.props.fetchProducts();
     this.props.products.forEach(product =>
@@ -82,11 +96,48 @@ class Checkout extends Component {
                     <tr>
                       <td>Shipping Address</td>
                       <td>
-                        <input
-                          type="text"
-                          name="address"
-                          onChange={this.changeHandler}
-                        ></input>
+                        <form>
+                          <div className="form-group">
+                            <label for="exampleInputEmail1">Area</label>
+                            <input
+                              type="text"
+                              name="area"
+                              className="form-control"
+                              onChange={this.changeHandler}
+                              placeholder="Enter area name"
+                            />
+                            <small className="form-text text-muted">Delivery fees varies depending on area location</small>
+                          </div>
+                          <div className="form-group">
+                            <label for="exampleInputEmail1">Block</label>
+                            <input
+                              type="number"
+                              name="block"
+                              onChange={this.changeHandler}
+                              className="form-control"
+                              placeholder="Enter block number" />
+
+                            <small className="form-text text-muted">Delivery fees varies depending on area location</small>
+                          </div>
+                          <div className="form-group">
+                            <label for="exampleInputEmail1">Street Address</label>
+                            <input
+                              type="text"
+                              name="street"
+                              onChange={this.changeHandler}
+                              className="form-control"
+                              placeholder="Enter street name or number" />
+                          </div>
+                          <div className="form-group">
+                            <label for="exampleInputEmail1">Optional</label>
+                            <input
+                              type="text"
+                              name="optional"
+                              onChange={this.changeHandler}
+                              className="form-control" />
+                            <small className="form-text text-muted">Avenue number or name/extra information</small>
+                          </div>
+                        </form>
                       </td>
                     </tr>
                   </tbody>
