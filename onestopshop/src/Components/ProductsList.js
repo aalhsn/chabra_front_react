@@ -57,22 +57,21 @@ class ProductsList extends Component {
         <SearchBar onChange={this.setQeury} />
         <div className="row justify-content-center">
           <button
-            className="btn ml-2 col-1"
+            className="btn ml-2 col-1 rounded-pill"
             style={{ backgroundColor: "#e83e8c", color: "white" }}
             onClick={() => this.handleVegetable()}
           >
             Vegetables
           </button>
           <button
-            className="btn ml-2 col-1"
+            className="btn ml-2 col-1 rounded-pill"
             style={{ backgroundColor: "#e83e8c", color: "white" }}
             onClick={() => this.handleFruit()}
           >
             Fruits
           </button>
           <button
-            className="btn ml-2 col-1"
-            style={{ backgroundColor: "#e83e8c", color: "white" }}
+            className="btn ml-2 col-1 rounded-pill btn-outline-secondary"
             onClick={() => this.handleClick()}
           >
             All

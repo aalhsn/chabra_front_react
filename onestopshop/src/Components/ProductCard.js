@@ -62,9 +62,9 @@ class ProductCard extends Component {
     if (this.props.product.stock < 10 && this.props.product.stock > 0) {
       return (
         <>
-          <h4 className="text-danger">
+          <h6 className="text-danger mt-3">
             {this.props.product.stock} items left!
-          </h4>
+          </h6>
         </>
       );
     }
@@ -102,11 +102,13 @@ class ProductCard extends Component {
 
     const item = this.props.products.find(item=> item.id === product.id)
     let date = moment(product.date_added).fromNow();
+    let counter = `${item && item.quantity} in basket`
     return (
       <div id="card-items" className="card">
-        <span className="badge badge-success">{date}</span>
+        <span className="badge badge-success" style={{height:25, fontSize:"1.1em"}}>Item was added {date}</span>
         <Link to={`/products/${product.id}`}>
-        <NotificationBadge id="bage" className="badge badge-pill badge-success" style = {{backgroundColor: "green" ,transformY:200, fontSize:"1.3em"}} count={item && item.quantity} effect={Effect.ROTATE_X}/> 
+        <NotificationBadge id="bage" className="badge badge-pill badge-success" style = {{backgroundColor: "yellow" ,transformY:200, color:"black", marginRight:95}} count={item && item.quantity} label={counter} effect={Effect.ROTATE_X}/>
+  
           <div className="image">
             <img
               className="card-img-top img-fluid"

@@ -45,7 +45,7 @@ class Profile extends Component {
          
           <div className="card col-6 mx-auto p-0" style={{ marginTop: "10%" }}>
            <section id="overlay" className="single-section">
-          <h1 id="my-cart" className="mt-5">My Profile</h1>
+          <h1 id="my-cart" className="mt-5" style={{fontSize:"3em"}}>My Profile</h1>
         </section>
           <div className="jumbotron">
             <p> Username: {profile.user.username}</p>

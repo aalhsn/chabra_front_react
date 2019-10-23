@@ -4,39 +4,40 @@ import React, { Component } from "react";
 // import { faList } from "@fortawesome/free-solid-svg-icons";
 // import { Link, Redirect } from "react-router-dom";
 // import * as actionCreators from "../redux/actions";
+import moment from "moment";
 import { connect } from "react-redux";
 
 class OrderHistoryDetailCard extends Component {
   render() {
     return (
       <tr>
-        <td>{this.props.order.order_ref}</td>
-        <td>{this.props.order.date_time}</td>
+        <td>{this.props.order.order_ref.toUpperCase()}</td>
+        <td>{moment(this.props.order.date_time).format("MMMM Do YYYY, h:mm:ss a")}</td>
         <td>
           {this.props.order.baskets.map(item => (
-            <>
-              <ul style={{ listStyleType: "none" }}>
-              <li>{item.product.name}</li>
-              </ul>
-            </>
+          
+            <ul style={{ listStyleType: "none" }}>
+            <li>{item.product.name}</li>
+            </ul>
+          
           ))}
         </td>
         <td>
           {this.props.order.baskets.map(item => (
-            <>
-              <ul style={{ listStyleType: "none" }}>
-                <li> {item.quantity}</li>
-              </ul>
-            </>
+          
+            <ul style={{ listStyleType: "none" }}>
+            <li>{item.quantity}</li>
+            </ul>
+          
           ))}
         </td>
         <td>
           {this.props.order.baskets.map(item => (
-            <>
-              <ul style={{ listStyleType: "none" }}>
-              <li>{item.product.price}</li>
-              </ul>
-            </>
+        
+            <ul style={{ listStyleType: "none" }}>
+            <li>{item.product.price}</li>
+            </ul>
+          
           ))}
         </td>
         <td>{this.props.order.total}</td>

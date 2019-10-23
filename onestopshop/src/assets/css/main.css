@@ -101,7 +101,6 @@ body {
 }
 
 #update-profile {
-    border: 1px solid black;
     border-radius: 30px;
     background-color: rgba(230, 230, 230, 0.87);
     padding: 50px;
