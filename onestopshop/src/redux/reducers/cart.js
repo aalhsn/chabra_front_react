@@ -3,14 +3,15 @@ import {
   CHANGE_QUANTITY,
   REMOVE_FROM_CART,
   CHECKOUT,
-  SET_PROFILE
+  SET_PROFILE,
+
 } from "../actions/actionTypes";
 
 const initialState = {
   products: [],
   orders: [],
   loading: true,
-  quantity: 0
+  quantity: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -63,6 +64,7 @@ const reducer = (state = initialState, action) => {
         orders: orders.order_history,
         loading: false
       };
+
 
     default:
       return {
