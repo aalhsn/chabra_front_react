@@ -28,18 +28,20 @@ class ProductCard extends Component {
             id="btn-cart"
             className="btn btn-success mt-2"
             onClick={() => this.state.quantity !== 0 && this.handleClick()}
-          >Add to cart </button>
+          >
+            Add to cart{" "}
+          </button>
           {this.limited()}
         </>
       );
     } else {
-      return( 
-      <>
-     <button
-            
-            className="btn btn-secondary mt-2 rounded-pill"  disabled>Out of Stock</button>
-      </>
-      )
+      return (
+        <>
+          <button className="btn btn-secondary mt-2 rounded-pill" disabled>
+            Out of Stock
+          </button>
+        </>
+      );
     }
   };
 
@@ -67,24 +69,25 @@ class ProductCard extends Component {
   };
 
   changeQuantity = number => {
-    
     if (this.state.quantity >= 0) {
       if (
         this.props.products.find(
           product => product.id === this.props.product.id
         )
       ) {
-        let quantityInCart = this.props.products.find(product => product.id === this.props.product.id).quantity
-        
-          if (
-            quantityInCart + number + this.state.quantity >
-            this.props.product.stock
-          ) {
-            return alert("Exceeded stock!");
-          } else {
-            const newQuantity = this.state.quantity + number;
-            this.setState({ quantity: newQuantity });
-          }
+        let quantityInCart = this.props.products.find(
+          product => product.id === this.props.product.id
+        ).quantity;
+
+        if (
+          quantityInCart + number + this.state.quantity >
+          this.props.product.stock
+        ) {
+          return alert("Exceeded stock!");
+        } else {
+          const newQuantity = this.state.quantity + number;
+          this.setState({ quantity: newQuantity });
+        }
       } else if (number + this.state.quantity > this.props.product.stock) {
         return alert("Exceeded stock!");
       }
@@ -108,13 +111,13 @@ class ProductCard extends Component {
           </div>
         </Link>
         <div className="card-body">
-          <h5 className="card-title">
-            <span>{product.name}</span>
-          </h5>
+          <Link id="card-name" to={`/products/${product.id}`}>
+            <h5 className="card-title">
+              <span>{product.name}</span>
+            </h5>
+          </Link>
           <p className="card-text">{product.price} KWD</p>
           {this.ShowCounter()}
-         
-         
         </div>
       </div>
     );
@@ -122,7 +125,6 @@ class ProductCard extends Component {
 }
 
 const mapStateToProps = state => {
-  
   return {
     products: state.cartReducer.products
   };

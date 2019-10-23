@@ -90,7 +90,7 @@ export const signup = (userData, history) => {
       const user = res.data;
       dispatch(setCurrentUser(user.access));
       dispatch(login(userData, history));
-      history.replace("/");
+      // history.replace("/");
     } catch (error) {
       console.error(error.response.data);
       dispatch(setErrors(error.response.data));

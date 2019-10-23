@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 import { logout } from "../redux/actions/authentication";
 
@@ -9,9 +11,13 @@ class Logout extends Component {
   render() {
     const logout = () => {
       return (
-        <button className="btn btn-danger" onClick={this.props.logout}>
-          Logout
-        </button>
+        <Link
+          id="nav-link"
+          onClick={this.props.logout}
+          className="nav-link nav"
+        >
+          logout
+        </Link>
       );
     };
 

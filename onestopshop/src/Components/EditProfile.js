@@ -59,8 +59,12 @@ class EditProfile extends Component {
       return <Loading />;
     } else {
       return (
-        <div className="card col-6 mx-auto p-0" style={{ marginTop: "10%" }}>
-          <form onSubmit={this.submitHandler}>
+        <div
+          id="update-profile"
+          className="card col-6 mx-auto p-0"
+          style={{ marginTop: "10%" }}
+        >
+          <form id="update-profile" onSubmit={this.submitHandler}>
             {!!errors.length && (
               <div className="alert alert-danger" role="alert">
                 {errors.map(error => (
@@ -69,56 +73,74 @@ class EditProfile extends Component {
               </div>
             )}
 
-            <p> First Name: {profile.user.first_name}</p>
+            <p>
+              {" "}
+              <b>First Name: </b> {profile.user.first_name}
+            </p>
             <input
+              className="form-control"
               placeholder={profile.user.first_name}
               onChange={this.changeHandler}
               name="first_name"
               value={this.state.first_name}
             />
             <br />
-            <p> Last Name: {profile.user.last_name}</p>
+            <p>
+              {" "}
+              <b>Last Name: </b>
+              {profile.user.last_name}
+            </p>
             <input
+              className="form-control"
               placeholder={profile.user.last_name}
               onChange={this.changeHandler}
               name="last_name"
               value={this.state.last_name}
             />
             <br />
-            <p> email: {profile.user.email}</p>
+            <p>
+              {" "}
+              <b>Email: </b> {profile.user.email}
+            </p>
             <input
+              className="form-control"
               placeholder={profile.user.email}
               onChange={this.changeHandler}
               name="email"
               value={this.state.email}
             />
             <br />
-            <p> phone: {profile.user.phone}</p>
+            <p>
+              {" "}
+              <b>Phone: </b> {profile.user.phone}
+            </p>
             <input
-              placeholder={profile.user.phone}
+              className="form-control"
+              placeholder={profile.phone}
               onChange={this.changeHandler}
               name="phone"
               value={this.state.phone}
             />
             <br />
-            <p> Gender: {this.genderString(profile.gender)}</p>
+            <p>
+              {" "}
+              <b>Gender: </b> {this.genderString(profile.gender)}
+            </p>
             <input
+              className="form-control"
               placeholder={this.genderString(profile.gender)}
               onChange={this.changeHandler}
               name="gender"
             />
 
-            <select
-              value={this.genderString(this.state.gender)}
-              onChange={this.changeHandler}
-              name="gender"
-            >
-              <option>F</option>
-              <option> M</option>
-            </select>
             <br />
-            <p> Age: {profile.user.age}</p>
+            <p>
+              {" "}
+              <b>Age: </b>
+              {profile.age}
+            </p>
             <input
+              className="form-control"
               placeholder={profile.user.age}
               onChange={this.changeHandler}
               name="age"
@@ -127,6 +149,7 @@ class EditProfile extends Component {
             <br />
 
             <input
+              id="registerbtn"
               className="btn btn-primary btn-block"
               type="submit"
               value="Update Profile"
