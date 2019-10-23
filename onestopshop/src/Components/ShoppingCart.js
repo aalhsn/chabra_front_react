@@ -19,7 +19,7 @@ class ShoppingCart extends Component {
     return (
       <>
         <section id="overlay" className="single-section">
-          <h1 id="my-cart">My Cart</h1>
+          <h1 id="my-cart" className="mt-5">My Cart</h1>
         </section>
 
         
@@ -60,18 +60,18 @@ class ShoppingCart extends Component {
                 </table>
               </div>
             </div>
-            <div className="col mb-2">
+            <div className="col mb-2 mt-5">
               <div className="row">
                 <div className="col-sm-12  col-md-6">
                   <Link to="/home">
-                    <button className="btn btn-block btn-light">
+                    <button className="btn btn-lg btn-secondary rounded-pill">
                       Continue Shopping
                     </button>
                   </Link>
                 </div>
                 <div className="col-sm-12 col-md-6 text-right">
                   <Link to="/checkout" params={{ total: this.totalPrice() }}>
-                    <button className="btn btn-lg btn-block btn-success text-uppercase">
+                    <button className="btn btn-lg btn-outline-success rounded-pill">
                       Proceed to checkout
                     </button>
                   </Link>

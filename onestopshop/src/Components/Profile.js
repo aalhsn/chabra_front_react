@@ -42,7 +42,12 @@ class Profile extends Component {
         console.log("userAdresses", userAdresses)
 
         return (
+         
           <div className="card col-6 mx-auto p-0" style={{ marginTop: "10%" }}>
+           <section id="overlay" className="single-section">
+          <h1 id="my-cart" className="mt-5">My Profile</h1>
+        </section>
+          <div className="jumbotron">
             <p> Username: {profile.user.username}</p>
             <p> First Name: {profile.user.first_name} </p>
             <p> Last Name: {profile.user.last_name} </p>
@@ -50,14 +55,15 @@ class Profile extends Component {
             <p> Age: {profile.age} </p>
             <p> Gender: {this.genderString(profile.gender)} </p>
             <p> Phone: {profile.phone} </p>
-            <Table striped bordered hover variant="dark">
+            </div>
+            <Table striped bordered hover variant="light">
 
-              <thead>
+            <thead style={{backgroundColor:"#82AE46", color:"white"}}>
                 <tr>
-                  <th>area</th>
-                  <th>street</th>
-                  <th>block</th>
-                  <th>optional</th>
+                  <th>Area</th>
+                  <th>Street</th>
+                  <th>Block</th>
+                  <th>Optional</th>
                 </tr>
               </thead>
               <tbody>
@@ -66,19 +72,17 @@ class Profile extends Component {
 
               </tbody>
             </Table>
-
+            <div className=" row justify-content-center mb-5">
             <Link to="/order-history">
-              <button className="btn btn-block btn-info">Order History</button>
+              <button className="btn rounded-pill btn-info mr-5">Order History</button>
             </Link>
             <br />
             <Link to="/edit-profile">
-              <button className="btn btn-block btn-warning">
+              <button className="btn rounded-pill btn-outline-secondary">
                 Edit Profile
               </button>
             </Link>
-
-            <br />
-            <Logout />
+            </div>
           </div>
         );
       }

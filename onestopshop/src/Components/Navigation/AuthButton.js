@@ -33,12 +33,6 @@ const AuthButton = ({ user, profile }) => {
             {profile.user.username}'s Profile
           </Link>
           <Logout />
-          <FontAwesomeIcon
-            id="cart-icon"
-            style={{ color: "#82ae46" }}
-            icon={faShoppingCart}
-          />
-          [ <span id="cart-qyt"></span>]
         </li>
       </>
     );

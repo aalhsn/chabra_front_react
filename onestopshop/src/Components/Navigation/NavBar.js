@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 // Components
 import AuthButton from "./AuthButton";
+import CartBtn from './CartButton'
 
 import icon from "./logo-web.png";
 const NavBar = () => {
@@ -50,6 +51,7 @@ const NavBar = () => {
         <span className="navbar-toggler-icon" />
       </button>
       <AuthButton />
+      <CartBtn/>
     </nav>
   );
 };
