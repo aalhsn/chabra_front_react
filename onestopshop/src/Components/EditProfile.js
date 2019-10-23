@@ -6,14 +6,15 @@ import Loading from "./Loading";
 
 class EditProfile extends Component {
   state = {
-    username: "",
+    username: this.props.profile.user.username,
     first_name: "",
     last_name: "",
     email: "",
     phone: null,
     gender: null,
     age: null,
-    image: null
+    image: null,
+    addresses:this.props.profile.addresses
   };
 
   componentDidMount() {
@@ -31,14 +32,23 @@ class EditProfile extends Component {
     }
   }
 
+  genderStringSwap = gender => {
+    if (gender === "Female") return "F";
+    if (gender === "Male") return "M";
+    return "";
+  };
+
   submitHandler = e => {
     e.preventDefault();
-
+    
     this.props.editProfile(this.state, this.props.history);
   };
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
+    if(e.target.name === 'gender'){
+      this.setState({ gender: this.genderStringSwap(e.target.value)})
+    }
   };
 
   genderString = gender => {
@@ -46,6 +56,9 @@ class EditProfile extends Component {
     if (gender === "M") return "Male";
     return "";
   };
+
+  
+
 
   render() {
     const profile = this.props.profile;
@@ -78,7 +91,7 @@ class EditProfile extends Component {
               <b>First Name: </b> {profile.user.first_name}
             </p>
             <input
-              className="form-control"
+              className="form-control rounded-pill"
               placeholder={profile.user.first_name}
               onChange={this.changeHandler}
               name="first_name"
@@ -91,7 +104,7 @@ class EditProfile extends Component {
               {profile.user.last_name}
             </p>
             <input
-              className="form-control"
+              className="form-control rounded-pill"
               placeholder={profile.user.last_name}
               onChange={this.changeHandler}
               name="last_name"
@@ -103,10 +116,11 @@ class EditProfile extends Component {
               <b>Email: </b> {profile.user.email}
             </p>
             <input
-              className="form-control"
+              className="form-control rounded-pill"
               placeholder={profile.user.email}
               onChange={this.changeHandler}
               name="email"
+              type="email"
               value={this.state.email}
             />
             <br />
@@ -115,24 +129,22 @@ class EditProfile extends Component {
               <b>Phone: </b> {profile.user.phone}
             </p>
             <input
-              className="form-control"
+              className="form-control rounded-pill"
               placeholder={profile.phone}
               onChange={this.changeHandler}
               name="phone"
+              type="phone"
               value={this.state.phone}
             />
             <br />
-            <p>
-              {" "}
-              <b>Gender: </b> {this.genderString(profile.gender)}
-            </p>
-            <input
-              className="form-control"
-              placeholder={this.genderString(profile.gender)}
-              onChange={this.changeHandler}
-              name="gender"
-            />
-
+            <div class="form-group rounded-pill">
+                    <label for="exampleFormControlSelect1">Gender:</label>
+                    <select name="gender" onChange={this.changeHandler} class="form-control" id="exampleFormControlSelect1">
+                    <option>choose gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    </select>
+                  </div>
             <br />
             <p>
               {" "}
@@ -140,7 +152,7 @@ class EditProfile extends Component {
               {profile.age}
             </p>
             <input
-              className="form-control"
+              className="form-control rounded-pill"
               placeholder={profile.user.age}
               onChange={this.changeHandler}
               name="age"

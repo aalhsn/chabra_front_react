@@ -25,12 +25,10 @@ class OrderHistoryDetail extends Component {
     } else { 
       const order = this.state.order
       return (
-      <>
-        <section className="jumbotron text-center">
-          <div className="container">
-            <h1 className="jumbotron-heading">Order Detail</h1>
-          </div>
-        </section>
+        <div className="container text-center">
+          <section id="overlay" className="single-section">
+            <h1 style={{color:"white", marginTop:250, fontSize:"3em"}}>Order {order.order_ref.toUpperCase()}</h1>
+            </section>
 
         <div className="container-fluid mb-4">
           <div className="row">
@@ -39,25 +37,13 @@ class OrderHistoryDetail extends Component {
                 <table className="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Order Ref.</th>
-                      <th scope="col" className="text-center">
-                        Date
-                      </th>
-                      <th scope="col" className="text-center">
-                        Items
-                      </th>
-                      <th scope="col" className="text-center">
-                        Qty
-                      </th>
-                      <th scope="col" className="text-center">
-                        Item Price
-                      </th>
-                      <th scope="col" className="text-center">
-                        Total
-                      </th>
-                      <th scope="col" className="text-center">
-                        Address
-                      </th>
+                      <th>Order Ref.</th>
+                      <th>Date</th>
+                      <th>Items</th>
+                      <th>Qty</th>
+                      <th>Item Price</th>
+                      <th>Total</th>
+                      <th>Address</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -74,7 +60,7 @@ class OrderHistoryDetail extends Component {
             </div>
           </div>
         </div>
-      </>
+        </div>
     );
   }
 }

@@ -19,22 +19,20 @@ class OrderHistory extends Component {
     ));
 
     return (
-      <>
-        <section className="jumbotron text-center">
-          <div className="container">
-            <h1 className="jumbotron-heading">Order History</h1>
-          </div>
-        </section>
-
-        <div className="container-fluid mb-4">
+    
+          <div className="container text-center">
+          <section id="overlay" className="single-section">
+            <h1 style={{color:"black", marginTop:230, fontSize:"4em"}}>Order History</h1>
+            </section>
+        <div className="container mb-4">
           <div className="row">
             <div className="col-12">
               <div className="table-responsive">
                 <table className="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">Order ID</th>
-                      <th scope="col" className="text-center">
+                      <th scope="col">Order Ref.</th>
+                      <th scope="col">
                         Date
                       </th>
                       <th scope="col"> </th>
@@ -42,11 +40,6 @@ class OrderHistory extends Component {
                   </thead>
                   <tbody>
                     {getOrderList}
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -55,7 +48,7 @@ class OrderHistory extends Component {
               <div className="row">
                 <div className="col-sm-12  col-md-6">
                   <Link to="/home">
-                    <button className="btn btn-block btn-light">
+                    <button className="btn btn-block btn-secondary">
                       Continue Shopping
                     </button>
                   </Link>
@@ -65,7 +58,7 @@ class OrderHistory extends Component {
             </div>
           </div>
         </div>
-      </>
+        </div>
     );
   }
 }
