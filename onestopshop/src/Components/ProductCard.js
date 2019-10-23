@@ -99,10 +99,12 @@ class ProductCard extends Component {
   };
   render() {
     const product = this.props.product;
+
     const item = this.props.products.find(item=> item.id === product.id)
     let date = moment(product.date_added).fromNow();
     return (
       <div id="card-items" className="card">
+        <span className="badge badge-success">{date}</span>
         <Link to={`/products/${product.id}`}>
         <NotificationBadge id="bage" className="badge badge-pill badge-success" style = {{backgroundColor: "green" ,transformY:200, fontSize:"1.3em"}} count={item && item.quantity} effect={Effect.ROTATE_X}/> 
           <div className="image">
@@ -120,7 +122,13 @@ class ProductCard extends Component {
               <span>{product.name}</span>
             </h5>
           </Link>
-          <p className="card-text">{product.price} KWD</p>
+          <p className="card-text" style={{ marginBottom: 0 }}>
+            {product.price} KWD
+          </p>
+          <small className="card-text">
+            <strong>{product.origin}</strong>
+          </small>
+          <br />
           {this.ShowCounter()}
         </div>
       </div>
