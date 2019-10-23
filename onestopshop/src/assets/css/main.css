@@ -29,7 +29,9 @@ body {
 #mainNav {
   background-color: white;
   height: 60px;
-  opacity: 0.9;
+  padding: 30px;
+  font-family: "Poppins", Arial, sans-serif;
+  text-decoration: none;
 }
 
 #my-cart {
@@ -60,10 +62,107 @@ body {
   text-align: center;
 }
 
-#logo-text {
-  font-size: 25px;
+.navbar-text {
+  color: #82ae46;
+  font-weight: 400;
+}
+
+#cart-icon {
+  margin-left: 20px;
+}
+#cart-qyt {
+  padding: 5px;
+}
+
+#nav-link {
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 400;
+  color: #82ae46;
+  display: inline-block;
   text-decoration: none;
 }
+#nav-link:hover {
+  color: black;
+}
+
+#registerbtn {
+  background-color: #82ae46;
+  border: 1px solid #82ae46;
+}
+
+#registerbtn:hover {
+  background-color: black;
+}
+
+#update-profile {
+  border: 1px solid black;
+  border-radius: 30px;
+  background-color: rgba(230, 230, 230, 0.87);
+  padding: 50px;
+}
+
+#profile-image {
+  background-image: url("https://image.flaticon.com/icons/svg/17/17004.svg");
+  width: 90%;
+  background-color: black;
+  border-radius: 20px;
+}
+#nav-link-auth {
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 400;
+  color: black;
+  display: inline-block;
+  text-decoration: none;
+}
+#nav-link-auth:hover {
+  color: #82ae46;
+}
+
+#logo-text {
+  font-weight: 400;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: #82ae46;
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  line-height: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+#logo-text-2:hover {
+  color: #82ae46;
+}
+
+#logo-text-2 {
+  color: black;
+  white-space: nowrap;
+  text-decoration: none;
+  position: relative;
+  top: 6px;
+  text-decoration: none;
+}
+
+#card-name {
+  text-decoration: none;
+  color: black;
+}
+
+#card-name:hover {
+  text-decoration: none;
+  color: #82ae46;
+}
+
+#card-row {
+  padding-left: 40px;
+}
+
 .product-desc {
   font-family: "Poppins", Arial, sans-serif;
   background: #fff;
@@ -110,6 +209,17 @@ body {
 }
 .detail-img {
   width: 400px;
+  position: relative;
+  left: 100px;
+}
+
+#detail-page {
+  margin-bottom: 150px;
+}
+
+#loginCard {
+  position: relative;
+  top: 90px;
 }
 .overlay {
   opacity: 0.2;
@@ -151,13 +261,43 @@ body {
 #shipping {
   height: 120px;
   width: 120px;
-  background-color: #bbb;
+  background-color: #ffc107;
   border-radius: 50%;
   margin-bottom: 20px;
   margin-right: 100px;
 }
-#shipping:hover {
-  background-color: black;
+
+#shipping-2 {
+  height: 120px;
+  width: 120px;
+  background-color: #17a2b8;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  margin-right: 100px;
+}
+
+#shipping-3 {
+  height: 120px;
+  width: 120px;
+  background-color: #e83e8c;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  margin-right: 100px;
+}
+
+#shipping-4 {
+  height: 120px;
+  width: 120px;
+  background-color: #fd7e14;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  margin-right: 100px;
+}
+#shipping:hover,
+#shipping-2:hover,
+#shipping-3:hover,
+#shipping-4:hover {
+  background-color: #82ae46;
 }
 #feature-text {
   text-align: center;
@@ -222,7 +362,6 @@ body {
 }
 
 #btn-cont {
-
   border-radius: 20px;
 }
 #btn-basket:hover,
@@ -271,9 +410,21 @@ body {
 
 #card-image:hover,
 .detail-img:hover {
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
+#search-icon {
+  color: #82ae46;
+}
+
+#search-icon-color {
+  background-color: white;
+  border: 1px solid black;
+}
+
+#border-search {
+  border: 1px solid black;
+}
 .our-products {
   font-family: "Poppins", Arial, sans-serif;
   text-align: center;
@@ -288,4 +439,23 @@ body {
   font-weight: bold;
 }
 
+#shipping-icon {
+  color: white;
+  position: relative;
+  top: 35px;
+  left: 30px;
+}
 
+#shipping-icon-2 {
+  color: white;
+  position: relative;
+  top: 38px;
+  left: 38px;
+}
+
+#shipping-icon-3 {
+  color: white;
+  position: relative;
+  top: 35px;
+  left: 35px;
+}

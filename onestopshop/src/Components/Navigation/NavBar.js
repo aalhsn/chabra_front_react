@@ -9,14 +9,31 @@ import icon from "./logo-web.png";
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg fixed-top nav" id="mainNav">
-      <Link className="logo-text" to="/">
+      <Link
+        style={{
+          textDecoration: "none"
+        }}
+        className="logo-text"
+        to="/"
+      >
         <div className="row">
           <img
             src={icon}
-            style={{ width: "70px", height: "auto", paddingLeft: "20px" }}
+            style={{
+              width: "70px",
+              height: "auto",
+              paddingLeft: "20px"
+            }}
           ></img>
-          <h3 id="logo-text" style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-            Chabra جبرة{" "}
+          <h3
+            id="logo-text-2"
+            style={{
+              textDecoration: "none",
+              paddingLeft: "10px",
+              paddingTop: "5px"
+            }}
+          >
+            Chabra
           </h3>
         </div>
       </Link>

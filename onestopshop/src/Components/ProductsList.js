@@ -26,7 +26,7 @@ class ProductsList extends Component {
     ));
 
     return (
-      <div className="authors">
+      <div className="products-list">
         <SearchBar onChange={this.setQeury} />
         <div className="row" id="card-row">
           {productCards}

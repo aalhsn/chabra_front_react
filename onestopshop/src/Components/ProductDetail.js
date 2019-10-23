@@ -85,17 +85,17 @@ class ProductDetail extends Component {
         let quantityInCart = this.props.products.find(
           product => product.id === this.props.product.id
         ).quantity;
-          if (
-            quantityInCart + number + this.state.quantity >
-            this.props.product.stock
-          ) {
-            return alert("Exceeded stock!");
-          } else {
-            const newQuantity = this.state.quantity + number;
-            this.setState({ quantity: newQuantity });
-          }
-        } else if (number + this.state.quantity > this.props.product.stock) {
+        if (
+          quantityInCart + number + this.state.quantity >
+          this.props.product.stock
+        ) {
           return alert("Exceeded stock!");
+        } else {
+          const newQuantity = this.state.quantity + number;
+          this.setState({ quantity: newQuantity });
+        }
+      } else if (number + this.state.quantity > this.props.product.stock) {
+        return alert("Exceeded stock!");
       }
       const newQuantity = this.state.quantity + number;
       this.setState({ quantity: newQuantity });
@@ -110,7 +110,7 @@ class ProductDetail extends Component {
       return (
         <>
           <section className="single-section"></section>
-          <div className="row">
+          <div id="detail-page" className="row">
             <div className="col">
               <img
                 className="detail-img"
@@ -131,7 +131,7 @@ class ProductDetail extends Component {
                     Shopping Basket
                   </button>
                 </Link>
-                <Link to="/home">
+                <Link to="/">
                   <button id="btn-cont" className="btn btn-info">
                     Continue Shopping
                   </button>

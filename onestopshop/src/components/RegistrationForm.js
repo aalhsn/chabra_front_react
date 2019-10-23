@@ -25,21 +25,13 @@ class RegistationForm extends Component {
     this.props.signup(this.state, this.props.history);
   };
 
-  handleUsernameError = () => {
-    if (this.props.errors) {
-      if (this.props.errors.username[0]) {
-        return this.props.errors.username[0];
-      }
-    }
-  };
-
   render() {
     if (this.props.user) return <Redirect to="/" />;
 
     const errors = this.props.errors;
 
     return (
-      <div className="card col-6 mx-auto p-0 mt-5">
+      <div id="loginCard" className="card col-6 mx-auto p-0 mt-5">
         <div className="card-body">
           <h5 className="card-title mb-4">Register an account</h5>
           <form onSubmit={this.submitHandler}>
@@ -78,7 +70,7 @@ class RegistationForm extends Component {
           </form>
         </div>
         <div className="card-footer">
-          <Link to="/login" className="btn btn-small btn-link">
+          <Link id="nav-link-auth" to="/login" className="btn btn-small btn-link">
             I'm already registered!
           </Link>
         </div>

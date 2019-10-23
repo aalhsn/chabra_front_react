@@ -5,17 +5,21 @@ import Logout from "../Logout";
 import CartButton from "./CartButton";
 // Fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignInAlt,
+  faUserPlus,
+  faShoppingCart
+} from "@fortawesome/free-solid-svg-icons";
 
 const AuthButton = ({ user, profile }) => {
   let buttons = [
     <li key="loginButton" className="nav-item">
-      <Link to="/login" className="nav-link nav">
+      <Link id="nav-link" to="/login" className="nav-link nav">
         <FontAwesomeIcon icon={faSignInAlt} /> Login
       </Link>
     </li>,
     <li key="signupButton" className="nav-item">
-      <Link to="/signup" className="nav-link nav">
+      <Link id="nav-link" to="/signup" className="nav-link nav">
         <FontAwesomeIcon icon={faUserPlus} /> Signup
       </Link>
     </li>
@@ -24,14 +28,18 @@ const AuthButton = ({ user, profile }) => {
   if ((user, profile)) {
     buttons = (
       <>
-        <span className="navbar-text">Welcome, {profile.user.username}</span>
-        <li key="profileButton" className="nav-item">
-          <Link to="/profile" className="nav-link nav">
-            Profile
+        <li id="nav-link" key="profileButton" className="nav-item">
+          <Link id="nav-link" to="/profile" className="nav-link nav">
+            {profile.user.username}'s Profile
           </Link>
+          <Logout />
+          <FontAwesomeIcon
+            id="cart-icon"
+            style={{ color: "#82ae46" }}
+            icon={faShoppingCart}
+          />
+          [ <span id="cart-qyt"></span>]
         </li>
-
-        <Logout />
       </>
     );
   }
