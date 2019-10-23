@@ -13,7 +13,8 @@ class Checkout extends Component {
     block: 0,
     optional: "",
 
-    total: 0
+    total: 0,
+    address:""
   };
 
   totalPrice = () => {
@@ -24,25 +25,41 @@ class Checkout extends Component {
     return total.toFixed(3);
   };
 
+ 
+
 
   changeHandler = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  addressState = () => {
+    let newOrders ={}
+    if(this.state.address === ""){
+      newOrders = {
+        baskets: this.props.products,
+        address: {
+          area: this.state.area,
+          street: this.state.street,
+          block: this.state.block,
+          optional: this.state.optional,
+        }
+      } 
+
+    } else {
+
+      newOrders = {
+        baskets: this.props.products,
+        address: {area: this.state.address}
+      } 
+
+    }
+    return newOrders
+  }
+
 
   handleClick = async () => {
-    let newOrders = {
-      baskets: this.props.products,
-      address: {
-        area: this.state.area,
-        street: this.state.street,
-        block: this.state.block,
-        optional: this.state.optional,
-      }
-
-    };
-    console.log(newOrders)
-    await this.props.checkout(newOrders);
+    console.log(this.addressState())
+    await this.props.checkout(this.addressState());
     this.props.fetchProducts();
     this.props.products.forEach(product =>
       this.props.fetchProductDetail(product.id)
@@ -55,11 +72,24 @@ class Checkout extends Component {
       <ShoppingCard key={item.name} orderItem={item} />
     ));
 
+    const userAdresses = this.props.profile.addresses;
+        let Adresses = [];
+        if (userAdresses) {
+
+          Adresses = userAdresses.map(adress => (
+       
+              <option>{`${adress.area} ${adress.block} ${adress.street}`}</option>
+              
+           
+
+          ));
+        }
+
     return (
       <>
         <section className="jumbotron text-center">
           <div className="container">
-            <h1 className="jumbotron-heading">Order Summary</h1>
+            <h1 className="jumbotron-heading mt-5">Order Summary</h1>
           </div>
         </section>
 
@@ -94,6 +124,15 @@ class Checkout extends Component {
                       <td className="text-right">{this.totalPrice()} KWD</td>
                     </tr>
                     <tr>
+                    <td>
+                 <div class="form-group">
+                    <label for="exampleFormControlSelect1">Example select</label>
+                    <select name="address" onChange={this.changeHandler} class="form-control" id="exampleFormControlSelect1">
+                    <option>Previous addresses</option>
+                    {Adresses}
+                    </select>
+                  </div>
+                    </td>
                       <td>Shipping Address</td>
                       <td>
                         <form>
@@ -178,7 +217,8 @@ const mapStateToProps = state => {
     orders: state.cartReducer.orders,
     products: state.cartReducer.products,
     orignals: state.rootProducts.products,
-    user: state.authReducer.user
+    user: state.authReducer.user,
+    profile:state.authReducer.profile
   };
 };
 

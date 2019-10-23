@@ -47,7 +47,7 @@ const setCurrentUser = token => {
   return async dispatch => {
     let user;
     if (token) {
-      localStorage.setItem("token", token);
+      await localStorage.setItem("token", token);
       instance.defaults.headers.common.Authorization = `Bearer ${token}`;
       user = jwt_decode(token);
       dispatch(profile());
