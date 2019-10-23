@@ -97,9 +97,11 @@ class ProductCard extends Component {
   };
   render() {
     const product = this.props.product;
+    console.log(product.date_added);
     let date = moment(product.date_added).fromNow();
     return (
       <div id="card-items" className="card">
+        <span className="badge badge-success">{date}</span>
         <Link to={`/products/${product.id}`}>
           <div className="image">
             <img
@@ -116,7 +118,13 @@ class ProductCard extends Component {
               <span>{product.name}</span>
             </h5>
           </Link>
-          <p className="card-text">{product.price} KWD</p>
+          <p className="card-text" style={{ marginBottom: 0 }}>
+            {product.price} KWD
+          </p>
+          <small className="card-text">
+            <strong>{product.origin}</strong>
+          </small>
+          <br />
           {this.ShowCounter()}
         </div>
       </div>
