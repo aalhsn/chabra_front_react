@@ -57,8 +57,8 @@ class ProductsList extends Component {
         <SearchBar onChange={this.setQeury} />
         <div className="row justify-content-center">
           <button
-            className="btn ml-2 col-1 rounded-pill"
-            style={{ backgroundColor: "#e83e8c", color: "white" }}
+            className="btn ml-2  rounded-pill"
+            style={{ backgroundColor: "#e83e8c", color: "white", width: 150 }}
             onClick={() => this.handleVegetable()}
           >
             Vegetables

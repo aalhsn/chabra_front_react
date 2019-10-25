@@ -4,7 +4,7 @@ import moment from "moment";
 import { connect } from "react-redux";
 import { addItem } from "../redux/actions";
 import NotificationBadge from 'react-notification-badge';
-import {Effect} from 'react-notification-badge';
+import { Effect } from 'react-notification-badge';
 
 class ProductCard extends Component {
   state = {
@@ -100,15 +100,15 @@ class ProductCard extends Component {
   render() {
     const product = this.props.product;
 
-    const item = this.props.products.find(item=> item.id === product.id)
+    const item = this.props.products.find(item => item.id === product.id)
     let date = moment(product.date_added).fromNow();
     let counter = `${item && item.quantity} in basket`
     return (
       <div id="card-items" className="card">
-        <span className="badge badge-success" style={{height:25, fontSize:"1.1em"}}>Item was added {date}</span>
+        <span className="badge badge-success" style={{ height: 25, fontSize: "1.1em" }}>Item was added {date}</span>
         <Link to={`/products/${product.id}`}>
-        <NotificationBadge id="bage" className="badge badge-pill badge-success" style = {{backgroundColor: "yellow" ,transformY:200, color:"black", marginRight:95}} count={item && item.quantity} label={counter} effect={Effect.ROTATE_X}/>
-  
+          {item && <NotificationBadge id="bage" className="badge badge-pill badge-success" style={{ backgroundColor: "yellow", transformY: 200, color: "black", marginRight: 95 }} count={item.quantity} label={counter} effect={Effect.ROTATE_X} />
+          }
           <div className="image">
             <img
               className="card-img-top img-fluid"
